@@ -154,7 +154,7 @@ export class Usuario extends Persona {
           return;
         }
       }
-      router.navigate(['/inicio']);
+      router.navigate(['/login']);
     });
   }
 

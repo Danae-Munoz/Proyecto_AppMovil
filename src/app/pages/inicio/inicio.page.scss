@@ -89,13 +89,3 @@ main {
   overflow-y: hidden;
   overflow-x: hidden;
 }
-
-/* CSS para la animación del texto */
-.animate-text {
-  animation: fadeIn 2s ease-in-out;
-}
-
-@keyframes fadeIn {
-  0% { opacity: 0; }
-  100% { opacity: 1; }
-}

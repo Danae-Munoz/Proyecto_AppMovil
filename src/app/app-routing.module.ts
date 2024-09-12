@@ -15,6 +15,10 @@ const routes: Routes = [
     path: 'inicio',
     loadChildren: () => import('./pages/inicio/inicio.module').then( m => m.InicioPageModule)
   },
+  {
+    path: 'leerqr',
+    loadChildren: () => import('./pages/leerqr/leerqr.module').then( m => m.LeerqrPageModule)
+  },
 ];
 
 @NgModule({
