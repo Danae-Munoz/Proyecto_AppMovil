@@ -15,6 +15,9 @@ ion-content{
 .foto-portada {
   width: 100%;
 }
+body{
+  background-image: url("../../../assets/img/IMG_20240405_141450.jpg") !important;
+}
 
 @media screen and (orientation: landscape) {
   .center-container {
