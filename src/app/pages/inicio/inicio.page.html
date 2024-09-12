@@ -1,44 +1,57 @@
 <ion-header>
-  <ion-toolbar color="primary">
-    <ion-title #titulo class="ion-text-left ion-text font-size-18">
-      <div>
-        Sistema de Asistencia DUOC
-      </div>
-    </ion-title>
+  <ion-toolbar >
+    <ion-row>
+      <!-- Columna para la imagen sin animación -->
+      <ion-col size="3">
+        <ion-img src="/assets/icon/Logo_DuocUC.svg.png"></ion-img>
+      </ion-col>
+
+      <ion-col>
+        <ion-title #titulo class="ion-text-left ion-text font-size-18 animate-text">
+          <div>
+          <br>
+            Sistema de Asistencia 
+          </div>
+        </ion-title>
+      </ion-col>
+    </ion-row>
   </ion-toolbar>
 </ion-header>
 
 <div class="book">
+  <ion-content [fullscreen]="true" #page class="ion-padding-horizontal page">
 
-  <ion-content [fullscreen]="true" class="ion-padding-horizontal" #page class="page">
+    <ion-toolbar class="ion-padding-top">
+      <h1 class="ion-text-center">
+        ¡Bienvenido(a) {{ usuario.nombre }} {{ usuario.apellido }}!
+      </h1>
+    </ion-toolbar>
+    <ion-toolbar>
+      <h4 class="ion-text-center">
+        Información Adicional
+      </h4>
+    </ion-toolbar>
     
-    <ion-title class="ion-padding-top">
-      <ion-label>
-        <h1 class="ion-text-center">¡Bienvenido(a) {{ usuario.nombre }} {{ usuario.apellido }}!</h1>
-      </ion-label>
-    </ion-title>
-    
-    <b class="ion-text-center">
-      <h4>Información Adicional</h4>
-    </b>
-
     <ion-item #itemCuenta>
-      <ion-input label="Cuenta" labelPlacement="floating" type="text" 
-        [(ngModel)]="usuario.cuenta"></ion-input>
+      <ion-input [(ngModel)]="usuario.cuenta"
+          label="Cuenta" labelPlacement="floating"
+          placeholder="Ej: atorres"></ion-input>
     </ion-item>
 
     <ion-item #itemNombre>
-      <ion-input label="Nombre" labelPlacement="floating" type="text" 
-        [(ngModel)]="usuario.nombre"></ion-input>
+      <ion-input [(ngModel)]="usuario.nombre" 
+          label="Nombre" labelPlacement="floating"
+          placeholder="Ej: Ana"></ion-input>
     </ion-item>
 
     <ion-item #itemApellido>
-      <ion-input label="Apellido" labelPlacement="floating" type="text" 
-        [(ngModel)]="usuario.apellido"></ion-input>
+      <ion-input [(ngModel)]="usuario.apellido"
+          label="Apellido" labelPlacement="floating"
+          placeholder="Ej: Torres"></ion-input>
     </ion-item>
 
     <ion-item #itemEducacion>
-      <ion-label position="floating">Educación</ion-label>
+      <ion-label position="floating" class="font-size-16">Educación</ion-label>
       <ion-select placeholder="Seleccione nivel" 
           [(ngModel)]="usuario.nivelEducacional!.id">
         <ion-select-option *ngFor="let nivelEducacional of listaNivelesEducacionales" 
@@ -53,41 +66,81 @@
         nótese que para que se vea el botón del calendario, se tuvo que modificar el 
         archivo scss
       -->
-
+      <table>
+        <tr>
+          <td class="font-size-12">
+            Nacimiento
+          </td>
+          <td class="cell-align-right">
+            <input 
+              matInput 
+              [matDatepicker]="fechaNacimiento" 
+              [(ngModel)]="usuario.fechaNacimiento"
+              placeholder="dd/mm/yyyy"
+              class="date-width">
+          </td>
+          <td class="cell-width-0">
+            <mat-datepicker-toggle matSuffix [for]="fechaNacimiento"></mat-datepicker-toggle>
+            <mat-datepicker #fechaNacimiento></mat-datepicker>
+          </td>
+        </tr>
+      </table>
     </ion-item>
 
-    <ion-grid>
-      <ion-row>
-        <ion-col col-3>
-          <ion-button shape="block" (click)="limpiar1()" size="small">
-            Limpiar 1
+    <ion-grid class="ion-margin-top">
+      <ion-row class="ion-text-center">
+        <ion-col col-6>
+          <ion-button shape="round" size="small"
+              (click)="limpiarAnimandoDerIzq()">
+            Limpiar Izq Der
           </ion-button>
         </ion-col>
-        <ion-col col-3>
-          <ion-button shape="block" (click)="limpiar2()" size="small">
-            Limpiar 2
+        <ion-col col-6>
+          <ion-button shape="round" size="small"
+              (click)="limpiarAnimandoRotacion()">
+            Limpiar Rotación
           </ion-button>
         </ion-col>
-        <ion-col col-3>
-          <ion-button shape="block" (click)="createPageTurnAnimation()" size="small">
+      </ion-row>
+      <ion-row class="ion-text-center">
+        <ion-col col-6>
+          <ion-button shape="round" size="small"
+              (click)="animarVueltaDePagina()">
             Vuelta de hoja
           </ion-button>
         </ion-col>
-        <ion-col col-3>
-          <ion-button shape="block" (click)="mostrarDatosPersona()" size="small">
-            Mostrar
+        <ion-col col-6>
+          <ion-button shape="round" size="small"
+              (click)="mostrarDatosPersona()">
+            Mostrar datos
           </ion-button>
         </ion-col>
       </ion-row>
     </ion-grid>
   </ion-content>
-
 </div>
 
 <ion-footer>
-  <ion-toolbar color="primary">
-    <ion-title class="ion-text-left ion-text">
-      App desarrollada por Cristián Gómez Vega
-    </ion-title>
+  <ion-toolbar color="primary" class="ion-padding-horizontal ion-padding-top ion-padding-bottom">
+    
+    <ion-button shape="round" (click)="navegar('/inicio')" color="tertiary">
+      <ion-icon slot="start" name="home"></ion-icon>
+      Inicio
+    </ion-button>
+
+    &nbsp;&nbsp;&nbsp;
+
+    <ion-button shape="round" (click)="navegar('/leerqr')" color="tertiary">
+      <ion-icon slot="start" name="qr-code"></ion-icon>
+      Asistencia
+    </ion-button>
+
+    &nbsp;&nbsp;&nbsp;
+
+    <ion-button shape="round" (click)="navegar('/login')" color="tertiary">
+      <ion-icon slot="start" name="log-out"></ion-icon>
+      Salir
+    </ion-button>
+
   </ion-toolbar>
 </ion-footer>
