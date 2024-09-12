@@ -1,13 +1,93 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>inicio</ion-title>
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title #titulo class="ion-text-left ion-text font-size-18">
+      <div>
+        Sistema de Asistencia DUOC
+      </div>
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">inicio</ion-title>
-    </ion-toolbar>
-  </ion-header>
-</ion-content>
+<div class="book">
+
+  <ion-content [fullscreen]="true" class="ion-padding-horizontal" #page class="page">
+    
+    <ion-title class="ion-padding-top">
+      <ion-label>
+        <h1 class="ion-text-center">¡Bienvenido(a) {{ usuario.nombre }} {{ usuario.apellido }}!</h1>
+      </ion-label>
+    </ion-title>
+    
+    <b class="ion-text-center">
+      <h4>Información Adicional</h4>
+    </b>
+
+    <ion-item #itemCuenta>
+      <ion-input label="Cuenta" labelPlacement="floating" type="text" 
+        [(ngModel)]="usuario.cuenta"></ion-input>
+    </ion-item>
+
+    <ion-item #itemNombre>
+      <ion-input label="Nombre" labelPlacement="floating" type="text" 
+        [(ngModel)]="usuario.nombre"></ion-input>
+    </ion-item>
+
+    <ion-item #itemApellido>
+      <ion-input label="Apellido" labelPlacement="floating" type="text" 
+        [(ngModel)]="usuario.apellido"></ion-input>
+    </ion-item>
+
+    <ion-item #itemEducacion>
+      <ion-label position="floating">Educación</ion-label>
+      <ion-select placeholder="Seleccione nivel" 
+          [(ngModel)]="usuario.nivelEducacional!.id">
+        <ion-select-option *ngFor="let nivelEducacional of listaNivelesEducacionales" 
+          [value]="nivelEducacional.id">
+            {{nivelEducacional.nombre}}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item #itemFechaNacimiento>
+      <!-- CGV: A continuación se configura el MatDatePicker para la fecha de nacimiento 
+        nótese que para que se vea el botón del calendario, se tuvo que modificar el 
+        archivo scss
+      -->
+
+    </ion-item>
+
+    <ion-grid>
+      <ion-row>
+        <ion-col col-3>
+          <ion-button shape="block" (click)="limpiar1()" size="small">
+            Limpiar 1
+          </ion-button>
+        </ion-col>
+        <ion-col col-3>
+          <ion-button shape="block" (click)="limpiar2()" size="small">
+            Limpiar 2
+          </ion-button>
+        </ion-col>
+        <ion-col col-3>
+          <ion-button shape="block" (click)="createPageTurnAnimation()" size="small">
+            Vuelta de hoja
+          </ion-button>
+        </ion-col>
+        <ion-col col-3>
+          <ion-button shape="block" (click)="mostrarDatosPersona()" size="small">
+            Mostrar
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-content>
+
+</div>
+
+<ion-footer>
+  <ion-toolbar color="primary">
+    <ion-title class="ion-text-left ion-text">
+      App desarrollada por Cristián Gómez Vega
+    </ion-title>
+  </ion-toolbar>
+</ion-footer>
