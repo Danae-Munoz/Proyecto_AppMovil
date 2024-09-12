@@ -43,19 +43,19 @@
           label="Cuenta" labelPlacement="floating"
           placeholder="Ej: atorres"></ion-input>
       </ion-item>
-    
+
       <ion-item #itemNombre>
       <ion-input [(ngModel)]="usuario.nombre" 
           label="Nombre" labelPlacement="floating"
           placeholder="Ej: Ana"></ion-input>
       </ion-item>
-    
+
       <ion-item #itemApellido>
       <ion-input [(ngModel)]="usuario.apellido"
           label="Apellido" labelPlacement="floating"
           placeholder="Ej: Torres"></ion-input>
       </ion-item>
-    
+
       <ion-item #itemEducacion>
       <ion-label position="floating" class="font-size-16">Educación</ion-label>
       <ion-select placeholder="Seleccione nivel" 
@@ -66,7 +66,7 @@
         </ion-select-option>
       </ion-select>
       </ion-item>
-    
+
       <ion-item #itemFechaNacimiento>
       <table>
         <tr>
@@ -88,7 +88,7 @@
         </tr>
       </table>
       </ion-item>
-    
+
       <ion-grid class="ion-margin-top">
       <ion-row class="ion-text-center">
         <ion-col col-6 >
@@ -103,16 +103,17 @@
   </div>
 </div>
 
-<ion-footer >
-  <ion-toolbar  class=" ion-padding-top ion-padding-bottom ">
-    <ion-button shape="round" (click)="navegar('/leerqr')" color="tertiary">
-      <ion-icon slot="start" name="qr-code"></ion-icon>
-      Asistencia
-    </ion-button>
-    &nbsp;&nbsp;&nbsp;
-    <ion-button shape="round" (click)="navegar('/login')" color="tertiary">
-      <ion-icon slot="start" name="log-out"></ion-icon>
-      Salir
-    </ion-button>
-  </ion-toolbar>
-</ion-footer>
+<div class="background-footer">
+  <ion-button shape="round" (click)="navegar('/leerqr')" class="orange-button">
+    <ion-icon slot="start" name="qr-code"></ion-icon>
+    Asistencia
+  </ion-button>
+  &nbsp;&nbsp;&nbsp;
+  <ion-button shape="round" (click)="navegar('/login')" class="orange-button">
+    <ion-icon slot="start" name="log-out"></ion-icon>
+    Salir
+  </ion-button>
+</div>
+
+
+
