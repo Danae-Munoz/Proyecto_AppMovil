@@ -19,6 +19,10 @@ const routes: Routes = [
     path: 'leerqr',
     loadChildren: () => import('./pages/leerqr/leerqr.module').then( m => m.LeerqrPageModule)
   },
+  {
+    path: 'misdatos',
+    loadChildren: () => import('./pages/misdatos/misdatos.module').then( m => m.MisdatosPageModule)
+  },
 ];
 
 @NgModule({
