@@ -23,4 +23,4 @@ import { MisdatosPage } from './misdatos.page';
   ],
   declarations: [MisdatosPage]
 })
-export class InicioPageModule {}
+export class MisdatosPageModule {}

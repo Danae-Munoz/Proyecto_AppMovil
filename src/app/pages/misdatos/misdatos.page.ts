@@ -43,8 +43,13 @@ export class MisdatosPage implements AfterViewInit {
     this.usuario.cuenta = '';
     this.usuario.nombre = '';
     this.usuario.apellido = '';
+    this.usuario.correo = '';
+    this.usuario.preguntaSecreta = '';
+    this.usuario.respuestaSecreta = '';
     this.usuario.nivelEducacional = NivelEducacional.buscarNivelEducacional(1)!;
     this.usuario.fechaNacimiento = undefined;
+    this.usuario.password = '';
+    this.usuario.confirmPassword = ''; // Added confirm password clear
   }
 
   limpiarAnimandoDerIzq() {
@@ -115,33 +120,43 @@ export class MisdatosPage implements AfterViewInit {
     return 'No asignado';
   }
 
+  // Validate if passwords match
+  validarContrasenas() {
+    if (this.usuario.password !== this.usuario.confirmPassword) {
+      this.mostrarMensajeAlerta('Las contraseñas no coinciden.');
+      return false;
+    }
+    return true;
+  }
+
   mostrarDatosPersona() {
-    // Si el usuario no ingresa la cuenta, se mostrará un error
-    if (this.usuario.cuenta.trim() === '') {
-      this.mostrarMensajeAlerta('La cuenta es un campo obligatorio.');
-      return;
-    }
+    // First validate passwords
+    if (this.validarContrasenas()) {
+      // Continue with showing user data
+      if (this.usuario.cuenta.trim() === '') {
+        this.mostrarMensajeAlerta('La cuenta es un campo obligatorio.');
+        return;
+      }
 
-    // Si el usuario no ingresa al menos el nombre o el apellido, se mostrará un error
-    this.usuario.nombre = this.usuario.nombre.trim();
-    this.usuario.apellido = this.usuario.apellido.trim();
-    if (this.usuario.nombre.trim() === '' && this.usuario.apellido === '') {
-      this.mostrarMensajeAlerta('Debe ingresar al menos un nombre o un apellido.');
-      return;
-    }
+      this.usuario.nombre = this.usuario.nombre.trim();
+      this.usuario.apellido = this.usuario.apellido.trim();
+      if (this.usuario.nombre.trim() === '' && this.usuario.apellido === '') {
+        this.mostrarMensajeAlerta('Debe ingresar al menos un nombre o un apellido.');
+        return;
+      }
 
-    // Mostrar un mensaje emergente con los datos de la persona
-    let mensaje = `
-      <small>
-        <b>Cuenta:      </b> ${this.usuario.cuenta} <br>
-        <br>Usuario:    </b> ${this.usuario.correo} <br>
-        <br>Nombre:     </b> ${this.asignado(this.usuario.nombre)} <br>
-        <br>Apellido:   </b> ${this.asignado(this.usuario.apellido)} <br>
-        <br>Educación:  </b> ${this.asignado(this.usuario.nivelEducacional.getEducacion())} <br>
-        <br>Nacimiento: </b> ${this.usuario.getFechaNacimiento()}
-      </small>
-    `;
-    this.mostrarMensajeAlerta(mensaje);
+      let mensaje = `
+        <small>
+          <b>Cuenta:      </b> ${this.usuario.cuenta} <br>
+          <b>Usuario:     </b> ${this.usuario.correo} <br>
+          <b>Nombre:      </b> ${this.asignado(this.usuario.nombre)} <br>
+          <b>Apellido:    </b> ${this.asignado(this.usuario.apellido)} <br>
+          <b>Educación:   </b> ${this.asignado(this.usuario.nivelEducacional.getEducacion())} <br>
+          <b>Nacimiento:  </b> ${this.usuario.getFechaNacimiento()}
+        </small>
+      `;
+      this.mostrarMensajeAlerta(mensaje);
+    }
   }
 
   async mostrarMensajeAlerta(mensaje: string) {
@@ -158,4 +173,5 @@ export class MisdatosPage implements AfterViewInit {
   }
 
 }
+
 

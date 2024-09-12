@@ -9,6 +9,7 @@ export class Usuario extends Persona {
   public password: string;
   public preguntaSecreta: string;
   public respuestaSecreta: string;
+  public confirmPassword: string;
 
   constructor() {
     super();
@@ -17,6 +18,7 @@ export class Usuario extends Persona {
     this.password = '';
     this.preguntaSecreta = '';
     this.respuestaSecreta = '';
+    this.confirmPassword = '';
     this.nombre = '';
     this.apellido = '';
     this.nivelEducacional = NivelEducacional.buscarNivelEducacional(1)!;

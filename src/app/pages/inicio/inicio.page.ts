@@ -119,7 +119,7 @@ export class InicioPage implements AfterViewInit {
   mostrarDatosPersona() {
     // Si el usuario no ingresa la cuenta, se mostrará un error
     if (this.usuario.cuenta.trim() === '') {
-      this.mostrarMensajeAlerta('La cuenta es un campo obligatorio.');
+      this.mostrarMensajeAlerta('⚠️ La cuenta es un campo obligatorio.⚠️');
       return;
     }
 
@@ -127,22 +127,22 @@ export class InicioPage implements AfterViewInit {
     this.usuario.nombre = this.usuario.nombre.trim();
     this.usuario.apellido = this.usuario.apellido.trim();
     if (this.usuario.nombre.trim() === '' && this.usuario.apellido === '') {
-      this.mostrarMensajeAlerta('Debe ingresar al menos un nombre o un apellido.');
+      this.mostrarMensajeAlerta('⚠️ Debe ingresar al menos un nombre o un apellido.⚠️');
       return;
     }
 
     // Mostrar un mensaje emergente con los datos de la persona
     let mensaje = `
-      <small>
-        <b>Cuenta:      </b> ${this.usuario.cuenta} <br>
-        <br>Usuario:    </b> ${this.usuario.correo} <br>
-        <br>Nombre:     </b> ${this.asignado(this.usuario.nombre)} <br>
-        <br>Apellido:   </b> ${this.asignado(this.usuario.apellido)} <br>
-        <br>Educación:  </b> ${this.asignado(this.usuario.nivelEducacional.getEducacion())} <br>
-        <br>Nacimiento: </b> ${this.usuario.getFechaNacimiento()}
-      </small>
-    `;
-    this.mostrarMensajeAlerta(mensaje);
+        <small>
+          <b>Cuenta:      </b> ${this.usuario.cuenta} <br>
+          <b>Usuario:     </b> ${this.usuario.correo} <br>
+          <b>Nombre:      </b> ${this.asignado(this.usuario.nombre)} <br>
+          <b>Apellido:    </b> ${this.asignado(this.usuario.apellido)} <br>
+          <b>Educación:   </b> ${this.asignado(this.usuario.nivelEducacional.getEducacion())} <br>
+          <b>Nacimiento:  </b> ${this.usuario.getFechaNacimiento()}
+        </small>
+      `;
+      this.mostrarMensajeAlerta(mensaje);
   }
 
   async mostrarMensajeAlerta(mensaje: string) {

@@ -23,6 +23,10 @@ const routes: Routes = [
     path: 'misdatos',
     loadChildren: () => import('./pages/misdatos/misdatos.module').then( m => m.MisdatosPageModule)
   },
+  {
+    path: 'miclase',
+    loadChildren: () => import('./pages/miclase/miclase.module').then( m => m.MiclasePageModule)
+  },
 ];
 
 @NgModule({
