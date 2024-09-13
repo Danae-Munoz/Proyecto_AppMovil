@@ -85,6 +85,27 @@ export class Usuario extends Persona {
     if (!usu) return 'Las credenciales del usuario son incorrectas.';
     return '';
   }
+  public actualizarDatos(
+    cuenta: string,
+    correo: string,
+    password: string,
+    preguntaSecreta: string,
+    respuestaSecreta: string,
+    nombre: string,
+    apellido: string,
+    nivelEducacional: NivelEducacional,
+    fechaNacimiento: Date | undefined
+  ): void {
+    this.cuenta = cuenta;
+    this.correo = correo;
+    this.password = password;
+    this.preguntaSecreta = preguntaSecreta;
+    this.respuestaSecreta = respuestaSecreta;
+    this.nombre = nombre;
+    this.apellido = apellido;
+    this.nivelEducacional = nivelEducacional;
+    this.fechaNacimiento = fechaNacimiento;
+  }
 
   public override toString(): string {
     return `      ${this.cuenta}
