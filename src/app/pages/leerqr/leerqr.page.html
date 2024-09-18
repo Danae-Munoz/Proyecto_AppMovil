@@ -1,67 +1,68 @@
-<ion-header>
-  <ion-toolbar color="primary">
-    <ion-title class="font-size-18">
-      Sistema de Asistencia DUOC
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-app>  
+  <ion-header class="header-container">
+    <ion-toolbar class="transparent-toolbar">
+      <ion-col size="3">
+        <ion-img src="/assets/img/Logo_DuocUC.svg.png" class="transparent-logo"></ion-img>
+      </ion-col>
+      <ion-title class="moving-title">
+        SISTEMA DE ASISTENCIA DUOC UC
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
 
-<ion-content [fullscreen]="true" #page class="ion-padding-horizontal page">
 
-  <!-- <div class="center-container"> -->
-
-    <ion-button *ngIf="!escaneando" (click)="comenzarEscaneoQR()" expand="full" shape="round">
-      <ion-icon slot="start" name="videocam-outline"></ion-icon>
-      Comenzar Escaneo de QR
-    </ion-button>
-  
-    <ion-button *ngIf="escaneando" (click)="detenerEscaneoQR()" expand="full" shape="round">
-      <ion-icon slot="start" name="stop-circle-outline"></ion-icon>
-      Detener escaneo de QR
-    </ion-button>
-  
-    <video #video [hidden]="!escaneando" width="100%"></video>
-    <canvas #canvas hidden></canvas>
-  
-    <ion-card>
-      <ion-card-header>
-        <ion-card-title>Los datos del Código QR son los siguientes:</ion-card-title>
-      </ion-card-header>
-      <ion-card-content class="borde">
-        <h2 *ngIf="datosQR">
-          {{ datosQR }}
-        </h2>
-        <h2 *ngIf="!datosQR">
-          Sin información
-        </h2>
-      </ion-card-content>
-    </ion-card>
+  <ion-content [fullscreen]="true" #page class="background-container">  
+    <div class="full-page-image">  
+      <ion-img src="../../../assets/img/IMG_20230406_080720.jpg" alt="Descripción de la imagen" class="cover-image"></ion-img>  
+    </div>  
     
-  <!-- </div> -->
+    <ion-button *ngIf="!escaneando" (click)="comenzarEscaneoQR()" expand="full" shape="round" class="dark-orange-button">  
+      <ion-icon slot="start" name="videocam-outline"></ion-icon>  
+      Comenzar Escaneo de QR  
+    </ion-button>  
 
-</ion-content>
+    <ion-button *ngIf="escaneando" (click)="detenerEscaneoQR()" expand="full" shape="round" class="dark-orange-button">  
+      <ion-icon slot="start" name="stop-circle-outline"></ion-icon>  
+      Detener escaneo de QR  
+    </ion-button>  
 
-<ion-footer>
-  <ion-toolbar color="primary" class="ion-padding-horizontal ion-padding-top ion-padding-bottom">
-    
-    <ion-button shape="round" (click)="navegar('/inicio')" color="tertiary">
-      <ion-icon slot="start" name="home"></ion-icon>
-      Inicio
-    </ion-button>
+    <video #video [hidden]="!escaneando" width="100%"></video>  
+    <canvas #canvas hidden></canvas>  
 
-    &nbsp;&nbsp;&nbsp;
+    <ion-card>  
+      <ion-card-header>  
+        <ion-card-title>Los datos del Código QR son los siguientes:</ion-card-title>  
+      </ion-card-header>  
+      <ion-card-content class="borde">  
+        <h2 *ngIf="datosQR">{{ datosQR }}</h2>  
+        <h2 *ngIf="!datosQR">Sin información</h2>  
+      </ion-card-content>  
+    </ion-card>  
+  </ion-content>  
 
-    <ion-button shape="round" (click)="navegar('/leerqr')" color="tertiary">
-      <ion-icon slot="start" name="qr-code"></ion-icon>
-      Asistencia
-    </ion-button>
+  <ion-footer class="transparent-footer">  
+    <ion-toolbar class="transparent-toolbar">  
+      <ion-button shape="round" (click)="navegar('/inicio')" class="dark-orange-button">  
+        <ion-icon slot="start" name="home"></ion-icon>  
+        Inicio  
+      </ion-button>  
 
-    &nbsp;&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp;  
 
-    <ion-button shape="round" (click)="navegar('/login')" color="tertiary">
-      <ion-icon slot="start" name="log-out"></ion-icon>
-      Salir
-    </ion-button>
+      <ion-button shape="round" (click)="navegar('/leerqr')" class="dark-orange-button">  
+        <ion-icon slot="start" name="qr-code"></ion-icon>  
+        Asistencia  
+      </ion-button>  
 
-  </ion-toolbar>
-</ion-footer>
+      &nbsp;&nbsp;&nbsp;  
+
+      <ion-button shape="round" (click)="navegar('/login')" class="dark-orange-button">  
+        <ion-icon slot="start" name="log-out"></ion-icon>  
+        Salir  
+      </ion-button>  
+    </ion-toolbar>  
+  </ion-footer>  
+</ion-app>  
+
+
+

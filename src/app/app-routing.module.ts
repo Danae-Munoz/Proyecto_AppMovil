@@ -26,7 +26,11 @@ const routes: Routes = [
   {
     path: 'miclase',
     loadChildren: () => import('./pages/miclase/miclase.module').then( m => m.MiclasePageModule)
+  },  {
+    path: 'miclase',
+    loadChildren: () => import('./pages/miclase/miclase.module').then( m => m.MiclasePageModule)
   },
+
 ];
 
 @NgModule({

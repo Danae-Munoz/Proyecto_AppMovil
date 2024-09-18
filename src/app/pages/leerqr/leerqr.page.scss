@@ -1,3 +1,5 @@
+---------------
+
 ion-content{
   --padding-top: 20px;
   --padding-bottom: 20px;
@@ -12,9 +14,125 @@ ion-content{
   height: 100%;           /* Ocupa toda la altura de la pantalla */
 }
 
+
+
+
 @media screen and (orientation: landscape) {
   .center-container {
     width: 40%;
     margin: auto;
   }
+}
+
+/* Ajuste del logo */
+ion-header ion-img {
+  width: 200px; /* Ajustamos el tamaño del logo */
+  height: auto;
+  margin: 10px; /* Añadimos un pequeño margen */
+}
+
+
+  .background-container {  
+    position: relative;  
+    height: 100%; /* Asegura que ocupe toda la altura */  
+  }  
+
+  .full-page-image {  
+    position: absolute; /* Permite que la imagen se posicione sobre el contenido */  
+    top: 0;  
+    left: 0;  
+    width: 100%;  
+    height: 100%;  
+    overflow: hidden; /* Previene el desbordamiento de la imagen */  
+  }  
+
+  .cover-image {  
+    position: absolute;  
+    top: 50%;  
+    left: 50%;  
+    width: 100%; /* Ajusta el tamaño al 100% de ancho */  
+    height: auto; /* Mantiene la proporción de la imagen */  
+    transform: translate(-50%, -50%); /* Centraliza la imagen */  
+    object-fit: cover; /* Cubre el área sin distorsionar la imagen */  
+  }  
+
+  /* Asegúrate de que el contenido esté por encima de la imagen */  
+  ion-content {  
+    position: relative;  
+    z-index: 1; /* Asegura que el contenido esté por encima de la imagen */  
+  }  
+
+  
+ 
+  .background-container {  
+    position: relative;  
+    height: 100%;  
+  }  
+
+  .full-page-image {  
+    position: absolute;  
+    top: 0;  
+    left: 0;  
+    width: 100%;  
+    height: 100%;  
+    overflow: hidden;  
+  }  
+
+  .cover-image {  
+    position: absolute;  
+    top: 50%;  
+    left: 50%;  
+    width: 100%;  
+    height: auto;  
+    transform: translate(-50%, -50%);  
+    object-fit: cover;  
+  }  
+
+  ion-content {  
+    position: relative;  
+    z-index: 1;  
+  }  
+
+  .transparent-header, .transparent-footer {  
+    background: rgba(0, 0, 0, 0.5); /* Fondo negro con 50% de opacidad */  
+  }  
+
+  .transparent-toolbar {  
+    --background: transparent; /* Fondo transparente para el toolbar */  
+    background: rgba(0, 0, 0, 0.5);
+  }  
+
+  .header-container {
+    border-bottom: 2px solid black; /* Agrega un borde negro inferior */
+  }
+  
+  .moving-title {
+    animation: slide-title 5s infinite linear;
+  }
+  
+  @keyframes slide-title {
+    0% {
+      transform: translateX(0);
+    }
+    50% {
+      transform: translateX(100%);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+  .moving-title {
+    color: #FFA500;
+    animation: slide-title 5s infinite linear;
+  }
+  
+  ion-button {
+    --background: #FFA500; /* Color de fondo naranja */
+    --color: #ffffff; /* Color del texto blanco */
+
+  }
+
+  .transparent-footer ion-button {
+    color: white; /* Cambiar color de las letras a blanco */
+    margin: 0 10px; /* Añadir un pequeño margen entre los botones */
 }
