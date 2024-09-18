@@ -5,25 +5,51 @@ ion-header ion-img {
   margin: 10px; /* Añadimos un pequeño margen */
 }
 
-ion-content {
-  --background: none; /* Eliminamos cualquier fondo predeterminado */
+ion-content{
+  --padding-top: 20px;
+  --padding-bottom: 20px;
+  --padding-end: 20px;
+  --padding-start: 20px;
 }
 
-.centrado {
-  position: relative;
-  z-index: 2; /* Nos aseguramos de que el contenido esté encima de la imagen */
-  padding: 20px;
-  background-color: rgba(0, 0, 0, 0.5); /* Fondo blanco semi-transparente */
-  border-radius: 10px;
-  margin: 20px;
+.center-container {
+  display: flex;
+  justify-content: center; /* Centra horizontalmente */
+  align-items: center;     /* Centra verticalmente */
+  height: 100%;           /* Ocupa toda la altura de la pantalla */
 }
 
-body, ion-content {
-  background-image: url('../../../assets/img/PAO999.jpg'); /* Cambia la ruta por la tuya */
-  background-size: cover; /* Asegura que la imagen cubra todo el fondo */
-  background-position: center;
-  background-repeat: no-repeat;
+@media screen and (orientation: landscape) {
+  .center-container {
+    width: 40%;
+    margin: auto;
+  }
 }
+
+/* Botón "Limpiar datos" con color personalizado */
+.btn-limpiar {
+  --background: #FFA500; /* Color naranja oscuro */
+  --color: white; /* Texto en blanco */
+}
+
+/* Estilo para el título de la asignatura */
+.titulo-asignatura {
+  color: #FFA500; /* Color naranja oscuro */
+  font-weight: bold; /* Negrita */
+}
+
+/* Encabezado transparente */
+.transparent-toolbar {
+  --background: rgba(0, 0, 0, 0.5); /* Fondo totalmente transparente */
+  border-bottom: none;
+}
+
+/* Título en el encabezado con color personalizado */
+.titulo-header {
+  color: #FFA500; /* Color blanco para el título del encabezado */
+  font-weight: bold;
+}
+
 
 table {
   width: 100%;
@@ -38,9 +64,24 @@ td {
   font-weight: bold;
 }
 
-ion-button {
-  --color: white; /* Color de texto del botón */
-  background-color: #FFA500;; /* Color de fondo del botón */
+@media screen and (orientation: landscape) {
+  .center-container {
+    width: 40%;
+    margin: auto;
+  }
+}
+
+ion-content {
+  --background: none; /* Eliminamos cualquier fondo predeterminado */
+}
+
+.centrado {
+  position: relative;
+  z-index: 2; /* Nos aseguramos de que el contenido esté encima de la imagen */
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.5); /* Fondo blanco semi-transparente */
+  border-radius: 10px;
+  margin: 20px;
 }
 
 
@@ -48,4 +89,26 @@ ion-button {
 
 
 
+
+
+
+
+
+/* Fondo del contenido con una imagen */
+ion-content {
+  --background: transparent; /* Fondo transparente para que se vea la imagen de fondo */
+  background-image: url('../../../assets/img/IMG_20230406_080720.jpg'); /* Ruta a tu imagen de fondo */
+  background-size: cover; /* Ajusta la imagen para cubrir todo el fondo */
+  background-position: center; /* Centra la imagen de fondo */
+  background-repeat: no-repeat; /* Evita que la imagen se repita */
+}
+
+/* Clase para centrar el contenido con márgenes */
+.centrado {
+  position: relative;
+  background-color: rgba(0, 0, 0, 0.5); /* Fondo semitransparente para que el contenido sea legible */
+  padding: 20px;
+  border-radius: 10px;
+  margin: 20px;
+}
 
