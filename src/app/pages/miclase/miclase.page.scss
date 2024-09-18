@@ -1,0 +1,51 @@
+/* Ajuste del logo */
+ion-header ion-img {
+  width: 200px; /* Ajustamos el tamaño del logo */
+  height: auto;
+  margin: 10px; /* Añadimos un pequeño margen */
+}
+
+ion-content {
+  --background: none; /* Eliminamos cualquier fondo predeterminado */
+}
+
+.centrado {
+  position: relative;
+  z-index: 2; /* Nos aseguramos de que el contenido esté encima de la imagen */
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.5); /* Fondo blanco semi-transparente */
+  border-radius: 10px;
+  margin: 20px;
+}
+
+body, ion-content {
+  background-image: url('../../../assets/img/PAO999.jpg'); /* Cambia la ruta por la tuya */
+  background-size: cover; /* Asegura que la imagen cubra todo el fondo */
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+table {
+  width: 100%;
+  color: #FFA500; /* Color de texto  --- blanco*/ 
+}
+
+td {
+  padding: 10px;
+}
+
+.ancho_columna_titulos {
+  font-weight: bold;
+}
+
+ion-button {
+  --color: white; /* Color de texto del botón */
+  background-color: #FFA500;; /* Color de fondo del botón */
+}
+
+
+
+
+
+
+
