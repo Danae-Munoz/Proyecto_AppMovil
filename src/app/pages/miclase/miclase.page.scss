@@ -1,5 +1,5 @@
-/* Ajuste del logo */
-ion-header ion-img {
+ /* Ajuste del logo */
+ ion-header ion-img {
   width: 200px; /* Ajustamos el tamaño del logo */
   height: auto;
   margin: 10px; /* Añadimos un pequeño margen */
@@ -18,6 +18,7 @@ ion-content{
   align-items: center;     /* Centra verticalmente */
   height: 100%;           /* Ocupa toda la altura de la pantalla */
 }
+
 
 @media screen and (orientation: landscape) {
   .center-container {
@@ -42,20 +43,25 @@ ion-content{
 .transparent-toolbar {
   --background: rgba(0, 0, 0, 0.5); /* Fondo totalmente transparente */
   border-bottom: none;
+  background-image: url('../../../assets/img/PAO99911.jpg')
 }
+
+
+
 
 /* Título en el encabezado con color personalizado */
-.titulo-header {
-  color: #FFA500; /* Color blanco para el título del encabezado */
-  font-weight: bold;
+.titulo-header {  
+  color: #FFA500; /* Color de texto */  
+  font-weight: bold; /* Negrita */  
+  text-align: center; /* Centrar el texto */  
+  margin: 0 ; /* Añadir margen superior e inferior */
+    
 }
-
 
 table {
   width: 100%;
-  color: #FFA500; /* Color de texto  --- blanco*/ 
+  color: #FFA500; /* Color de texto*/ 
 }
-
 td {
   padding: 10px;
 }
@@ -71,44 +77,35 @@ td {
   }
 }
 
+
 ion-content {
   --background: none; /* Eliminamos cualquier fondo predeterminado */
 }
 
-.centrado {
-  position: relative;
-  z-index: 2; /* Nos aseguramos de que el contenido esté encima de la imagen */
-  padding: 20px;
-  background-color: rgba(0, 0, 0, 0.5); /* Fondo blanco semi-transparente */
-  border-radius: 10px;
-  margin: 20px;
+.centrado {  
+  position: relative;  
+  z-index: 2; /* Nos aseguramos de que el contenido esté encima de la imagen */  
+  padding: 20px;  
+  background-color: rgba(0, 0, 0, 0.5); /* Fondo negro semi-transparente */  
+  border-radius: 10px;  
+  margin: 20px;  
+
+  /* Agrega un borde de color naranja oscuro */  
+  border: 5px solid #FFA500; /* Cambia este valor por el tono que prefieras */  
 }
-
-
-
-
-
-
-
-
-
-
 
 /* Fondo del contenido con una imagen */
 ion-content {
   --background: transparent; /* Fondo transparente para que se vea la imagen de fondo */
-  background-image: url('../../../assets/img/IMG_20230406_080720.jpg'); /* Ruta a tu imagen de fondo */
+  background-image: url('../../../assets/img/PAO999.jpg'); /* Ruta a tu imagen de fondo */
   background-size: cover; /* Ajusta la imagen para cubrir todo el fondo */
   background-position: center; /* Centra la imagen de fondo */
   background-repeat: no-repeat; /* Evita que la imagen se repita */
 }
 
-/* Clase para centrar el contenido con márgenes */
-.centrado {
-  position: relative;
-  background-color: rgba(0, 0, 0, 0.5); /* Fondo semitransparente para que el contenido sea legible */
-  padding: 20px;
-  border-radius: 10px;
-  margin: 20px;
-}
 
+
+.header-container {
+  /* ... otros estilos existentes ... */
+  border-bottom: 2px solid black; /* Agrega un borde inferior negro de 2px */
+}

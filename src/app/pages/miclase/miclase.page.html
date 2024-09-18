@@ -5,14 +5,10 @@
         <ion-img src="../../../assets/img/Logo_DuocUC.svg.png" class="logo ion-margin-left"></ion-img>  
       </ion-col>  
       <ion-title #titulo class="ion-text-left ion-text titulo-header">  
-        <div>  
-          SISTEMA DE ASISTENCIA DUOC  
-        </div>  
+        <div>SISTEMA DE ASISTENCIA DUOC</div>  
       </ion-title>  
     </ion-toolbar>  
   </ion-header>  
-
-  
 
   <ion-content [fullscreen]="true">  
     <div class="centrado">  
@@ -65,13 +61,14 @@
         </ion-label>  
       </ion-title>  
       <br>  
-
-      <ion-button class="btn-limpiar" expand="block" expand="full" shape="round" routerLink="/miclase">
-        <ion-icon slot="start" name="trash-outline"></ion-icon>
-        Limpiar datos
-      </ion-button> 
-      <!-- Cerrar Sesión -->  
+      <ion-button class="btn-limpiar" expand="block" shape="round" routerLink="/miclase">  
+        <ion-icon slot="start" name="trash-outline"></ion-icon>  
+        Limpiar datos  
+      </ion-button>  
       <ion-button color="rgb(161, 72, 190)" expand="block" class="ion-margin-top" (click)="cerrarsesion()">Cerrar Sesión</ion-button>  
     </div>  
   </ion-content>  
-</ion-app>  
+</ion-app>
+
+
+
