@@ -1,6 +1,8 @@
+import { OnInit } from '@angular/core';
 import { Component } from '@angular/core';
 import { Router, NavigationExtras, ActivatedRoute } from '@angular/router';
 import { ToastController } from '@ionic/angular';
+import { NivelEducacional } from 'src/app/model/nivel-educacional';
 import { Usuario } from 'src/app/model/usuario';
 
 @Component({
@@ -8,7 +10,7 @@ import { Usuario } from 'src/app/model/usuario';
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
 })
-export class LoginPage {
+export class LoginPage implements OnInit{
 
   public usuario: Usuario;
 
@@ -41,4 +43,6 @@ export class LoginPage {
     toast.present();
   }
 
+  ngOnInit(){
+  }
 }
