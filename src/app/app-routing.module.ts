@@ -30,6 +30,10 @@ const routes: Routes = [
     path: 'miclase',
     loadChildren: () => import('./pages/miclase/miclase.module').then( m => m.MiclasePageModule)
   },
+  {
+    path: 'res-password',
+    loadChildren: () => import('./pages/res-password/res-password.module').then( m => m.ResPasswordPageModule)
+  },
 
 ];
 
