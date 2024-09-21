@@ -26,13 +26,18 @@ const routes: Routes = [
   {
     path: 'miclase',
     loadChildren: () => import('./pages/miclase/miclase.module').then( m => m.MiclasePageModule)
-  },  {
+  },
+  {
     path: 'miclase',
     loadChildren: () => import('./pages/miclase/miclase.module').then( m => m.MiclasePageModule)
   },
   {
-    path: 'res-password',
-    loadChildren: () => import('./pages/res-password/res-password.module').then( m => m.ResPasswordPageModule)
+    path: 'correo',
+    loadChildren: () => import('./pages/correo/correo-routing.module').then( m => m.CorreoPageRoutingModule)
+  },
+  {
+    path: 'pregunta',
+    loadChildren: () => import('./pages/pregunta/pregunta-routing.module').then( m => m.PreguntaPageRoutingModule)
   },
 
 ];
