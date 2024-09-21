@@ -27,7 +27,7 @@ export class CorreoPage implements OnInit {
     if (this.correoForm.valid) {
       const correoIngresado = this.correoForm.value.correo;
 
-      const usuariosValidos: Usuario[] = Usuario.getListarUsuarios(); // Cambia a usar el método correcto
+      const usuariosValidos: Usuario[] = Usuario.getListaUsuarios(); // Cambia a usar el método correcto
       const usuarioEncontrado = usuariosValidos.find(usuario => usuario.correo === correoIngresado);
 
       if (!usuarioEncontrado) {
