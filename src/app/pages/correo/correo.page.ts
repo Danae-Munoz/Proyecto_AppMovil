@@ -27,7 +27,7 @@ export class CorreoPage implements OnInit {
     if (this.correoForm.valid) {
       const correoIngresado = this.correoForm.value.correo;
 
-      const usuariosValidos: Usuario[] = Usuario.getListaUsuarios(); // Cambia a usar el método correcto
+      const usuariosValidos: Usuario[] = Usuario.getListaUsuarios();
       const usuarioEncontrado = usuariosValidos.find(usuario => usuario.correo === correoIngresado);
 
       if (!usuarioEncontrado) {
@@ -35,7 +35,7 @@ export class CorreoPage implements OnInit {
       } else {
         const navigationExtras: NavigationExtras = {
           state: {
-            usuario: usuarioEncontrado // Asegúrate de que `usuario` tenga el tipo correcto
+            usuario: usuarioEncontrado 
           }
         };
         this.router.navigate(['/pregunta'], navigationExtras);
