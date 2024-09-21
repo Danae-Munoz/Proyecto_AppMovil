@@ -1,4 +1,4 @@
-import { Usuario } from './../../model/Usuario';
+import { Usuario } from 'src/app/model/usuario';
 import { Router, NavigationExtras } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
