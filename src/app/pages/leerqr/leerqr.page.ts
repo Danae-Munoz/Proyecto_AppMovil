@@ -169,4 +169,46 @@ export class LeerqrPage implements OnInit {
       this.datosQR = 'No se encontró un código QR en la imagen.';
     }
   }
+  mostrarDatosPersona() {
+    // Si el usuario no ingresa la cuenta, se mostrará un error
+    if (this.usuario.cuenta.trim() === '') {
+      this.mostrarMensajeAlerta('⚠️ La cuenta es un campo obligatorio.⚠️');
+      return;
+    }
+
+    // Si el usuario no ingresa al menos el nombre o el apellido, se mostrará un error
+    this.usuario.nombre = this.usuario.nombre.trim();
+    this.usuario.apellido = this.usuario.apellido.trim();
+    if (this.usuario.nombre.trim() === '' && this.usuario.apellido === '') {
+      this.mostrarMensajeAlerta('⚠️ Debe ingresar al menos un nombre o un apellido.⚠️');
+      return;
+    }
+
+    // Mostrar un mensaje emergente con los datos de la persona
+    let mensaje = `
+        <small>
+          <b>Cuenta:      </b> ${this.usuario.cuenta} <br>
+          <b>Usuario:     </b> ${this.usuario.correo} <br>
+          <b>Nombre:      </b> ${this.asignado(this.usuario.nombre)} <br>
+          <b>Apellido:    </b> ${this.asignado(this.usuario.apellido)} <br>
+          <b>Educación:   </b> ${this.asignado(this.usuario.nivelEducacional.getEducacion())} <br>
+          <b>Nacimiento:  </b> ${this.usuario.getFechaNacimiento()}
+        </small>
+      `;
+      this.mostrarMensajeAlerta(mensaje);
+  }
+  async mostrarMensajeAlerta(mensaje: string) {
+    const alert = await this.alertController.create({
+      header: 'Datos personales',
+      message: mensaje,
+      buttons: ['OK']
+    });
+    await alert.present();
+  }
+  asignado(texto: string) {
+    if (texto.trim() !== '') {
+      return texto;
+    }
+    return 'No asignado';
+  }
 }

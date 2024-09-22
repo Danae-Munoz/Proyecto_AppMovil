@@ -43,14 +43,31 @@
 
   ion-card{
     margin-top: 100px;
+    background-color: #f6a03ee1;
   }
-
+  .img-container {
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    
+  }
   ion-card-content.login {
     --background: transparent; /* Naranja con 50% de transparencia */
     padding: 20px;
     border-radius: 15px; 
   } 
-
+  .orange-button {
+    --background: #FFA500; /* Color de fondo naranja */
+    --color: #ffffff; /* Color del texto blanco */
+    --border-radius: 25px; /* Redondeo de los bordes */
+    border: none; /* Eliminar el borde por defecto */
+    padding: 10px 20px; /* Ajustar el tamaño del botón */
+    text-align: center; /* Centrar el texto */
+    display: inline-block; /* Asegurar que el botón se comporte correctamente */
+  }
+  
+  .orange-button:hover {
+    --background: #FF8C00; /* Color de fondo naranja más oscuro al pasar el ratón */
+  }
   ion-header ion-img {
     width: 100px; /* Ajustamos el tamaño del logo */
     height: auto;

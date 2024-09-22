@@ -12,7 +12,19 @@ ion-header ion-img {
   height: auto;
   margin: 10px; /* Añadimos un pequeño margen */
 }
+.orange-button {
+  --background: #FFA500; /* Color de fondo naranja */
+  --color: #ffffff; /* Color del texto blanco */
+  --border-radius: 25px; /* Redondeo de los bordes */
+  border: none; /* Eliminar el borde por defecto */
+  padding: 10px 20px; /* Ajustar el tamaño del botón */
+  text-align: center; /* Centrar el texto */
+  display: inline-block; /* Asegurar que el botón se comporte correctamente */
+}
 
+.orange-button:hover {
+  --background: #FF8C00; /* Color de fondo naranja más oscuro al pasar el ratón */
+}
 body{
   background-image: url("../../../assets/img/pao2.png");
 }
@@ -92,7 +104,7 @@ ion-title {
 ion-card-content.login {
   margin-top: 80px;
   --background: transparent; /* Naranja con 50% de transparencia */
-  background-color: rgba(255, 128, 0, 0.7); /* Fondo semi-transparente */
+  background-color: rgba(255, 154, 53, 0.705); /* Fondo semi-transparente */
   padding: 20px;
   border-radius: 15px; 
 }

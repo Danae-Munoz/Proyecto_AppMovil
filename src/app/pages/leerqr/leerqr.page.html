@@ -15,18 +15,25 @@
         </ion-col>
       </ion-row>
     </ion-toolbar>
-  </ion-header>   
-
+  </ion-header>
+  
   <ion-content [fullscreen]="true" class="background-container">
     <div class="background-image"></div> <!-- Imagen de fondo -->
-  
-    <h1 *ngIf="!datosQR" style="color: black;">Registra tu asistencia a clases</h1>
+    
+    <ion-card style="background-color: rgba(237, 219, 196, 0.773);">
+      <br>
+    <h1 class="ion-text-center" style="color: rgb(255, 145, 0);">
+      ¡Bienvenido(a) {{ usuario.nombre }} {{ usuario.apellido }}!
+    </h1>
+    <h1 class="ion-text-center" *ngIf="!datosQR" style="color: black;">Registra tu asistencia a clases</h1>
+    </ion-card>
+    
     <video #video [hidden]="!escaneando" style="width: 100%"></video>
     <canvas #canvas hidden></canvas>
 
 
   
-    <ion-card>
+    <ion-card style="background-color: rgba(237, 219, 196, 0.773);">
       <ion-card-header>
         <ion-card-title>Los datos del Código QR son los siguientes:</ion-card-title>
       </ion-card-header>
@@ -50,20 +57,16 @@
       Seleccionar Imagen
     </ion-button>
   </ion-content>
-  
-   
-  <div class="background-footer"> 
-    <ion-button shape="round" (click)="navegar('/inicio')" class="dark-orange-button">  
-      <ion-icon slot="start" name="home"></ion-icon>  
-      Inicio  
-    </ion-button>  
-    <ion-button shape="round" (click)="navegar('/leerqr')" class="dark-orange-button">  
-      <ion-icon slot="start" name="qr-code"></ion-icon>  
-      Asistencia  
-    </ion-button>  
-    <ion-button shape="round" (click)="navegar('/login')" class="dark-orange-button">  
-      <ion-icon slot="start" name="log-out"></ion-icon>  
-      Salir  
-    </ion-button>  
-  </div>
-</ion-app>"
+    
+
+<div class="background-footer"> 
+  <ion-button shape="round" (click)="navegar('/inicio')" class="dark-orange-button">  
+    <ion-icon slot="start" name="home"></ion-icon>  
+    Inicio  
+  </ion-button>    
+  <ion-button shape="round" (click)="navegar('/login')" class="dark-orange-button">  
+    <ion-icon slot="start" name="log-out"></ion-icon>  
+    Salir  
+  </ion-button>  
+</div>
+</ion-app>

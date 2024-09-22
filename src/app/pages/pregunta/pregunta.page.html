@@ -8,22 +8,24 @@
 </ion-header>
   <ion-content [fullscreen]="true">
   <img src="/assets/icon/c-28b93bf742.webp" class="img-fluid" style="position: absolute; right: 0; top: 0; z-index: -100; WIDTH:100%; height: 100%;">
-  <img src="../../../assets/img/pao2.png" class="img-fluid"> 
+  <img src="../../../assets/img/IMG_20240405_141450.jpg" class="img-fluid"> 
   <div class="centrado">
     <ion-card-content class="login ion-fade-in-up ion-animatable">
       <ion-title>
         <h2>Paso 2:</h2>
-        <h2>Responde la pregunta</h2>
-        <ion-text class="ion-text-center"><h2>Usuario: {{ usuario?.nombre }}</h2></ion-text>
-        <ion-text class="ion-text-center"><h2>{{usuario?.preguntaSecreta }}</h2></ion-text>
+        <h2>Responde la siguiente pregunta:</h2>
+        <ion-text class="ion-text-center"><h2 style="color: white;">Usuario: {{ usuario?.nombre }}</h2></ion-text>
+        <ion-text class="ion-text-center"><h2 style="color: white;">{{usuario?.preguntaSecreta }}</h2></ion-text>
       </ion-title>
-      <ion-item class="ion-margin-top">
-        <ion-input label="Ingrese Respuesta" labelplacement="floating" [(ngModel)]="this.respuesta"></ion-input>
+      <ion-item class="ion-margin-top">  
+        <ion-label position="floating">Ingrese Respuesta</ion-label>  
+        <ion-input labelplacement="floating" placeholder="" [(ngModel)]="this.respuesta"></ion-input>  
       </ion-item>
+
       <ion-row>
         <ion-col size="12">
           <br>
-          <ion-button shape="block" (click)="validarRespuestaSecreta()">Recuperar Contraseña</ion-button>
+          <ion-button class="orange-button" shape="block" (click)="validarRespuestaSecreta()">Recuperar Contraseña</ion-button>
         </ion-col>
       </ion-row>
     </ion-card-content> 

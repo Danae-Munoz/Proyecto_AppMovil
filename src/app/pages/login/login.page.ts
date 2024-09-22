@@ -32,7 +32,7 @@ export class LoginPage implements OnInit {
         usuario: this.usuario
       }
     };
-    this.usuario.navegarEnviandousuario(this.router, '/inicio');
+    this.usuario.navegarEnviandousuario(this.router, '/leerqr');
   }
 
   validarUsuario(usuario: Usuario): boolean {
