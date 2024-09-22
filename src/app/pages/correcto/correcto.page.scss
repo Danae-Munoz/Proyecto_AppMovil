@@ -17,6 +17,46 @@
   z-index: -1;
   }
 
+  img.img-fluid {  
+    position: absolute;  
+    right: 0;  
+    top: 0;  
+    z-index: -100; /* Asegúrate de que el z-index esté lo suficientemente bajo */  
+    width: 100%;  
+    height: 100%;  
+  }
+
+  ion-toolbar {  
+    --background: transparent; /* Hace el fondo de la barra de herramientas transparente */  
+  }  
+  
+  ion-content {  
+    --background: transparent; /* Asegúrate de que el contenido también sea transparente si es necesario */  
+  }
+
+  .title {  
+    font-weight: bold; /* Para poner el texto en negritas */  
+    color: orange; /* Ajusta el color a naranja */  
+    font-size: 2rem;
+    animation: moverTittle 5s ease-in-out infinite; /* Usar la animación definida */
+  }
+
+  ion-card{
+    margin-top: 100px;
+  }
+
+  ion-card-content.login {
+    --background: transparent; /* Naranja con 50% de transparencia */
+    padding: 20px;
+    border-radius: 15px; 
+  } 
+
+  ion-header ion-img {
+    width: 100px; /* Ajustamos el tamaño del logo */
+    height: auto;
+    margin: 10px; /* Añadimos un pequeño margen */
+  }
+
 /* Agrega una capa de superposición semitransparente */
 .background-overlay {
   width: 100%;
@@ -26,6 +66,10 @@
   left: 0;
   background-color: rgba(255, 0, 0, 10); /* Ajusta el color y la opacidad de la superposición */
   z-index: -1;
+}
+
+ion-toolbar {  
+  --background: transparent; /* Hace el fondo de la barra de herramientas transparente */  
 }
 
 /* Resto de estilos... */
@@ -60,10 +104,9 @@ text-align: center;
 }
 
 ion-card-content.login {
-background-color: rgba(255, 255, 255, 0.8); /* Fondo semi-transparente */
+  --background: transparent; /* Naranja con 50% de transparencia */
 padding: 50px;
 border-radius: 15px;
-box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
 
 ion-button {
