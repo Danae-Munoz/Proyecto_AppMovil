@@ -120,11 +120,7 @@ export class MisdatosPage implements AfterViewInit {
   }
 
   mostrarDatosPersona() {
-    // Si el usuario no ingresa la cuenta, se mostrará un error
-    if (this.usuario.cuenta.trim() === '') {
-      this.mostrarMensajeAlerta('La cuenta es un campo obligatorio.');
-      return;
-    }
+    this.mostrarMensajeAlerta('Funcion aun no implementada');
 
     // Si el usuario no ingresa al menos el nombre o el apellido, se mostrará un error
     this.usuario.nombre = this.usuario.nombre.trim();
@@ -133,25 +129,11 @@ export class MisdatosPage implements AfterViewInit {
       this.mostrarMensajeAlerta('Debe ingresar al menos un nombre o un apellido.');
       return;
     }
-    
-
-    // Mostrar un mensaje emergente con los datos de la persona
-    let mensaje = `
-      <small>
-        <b>Cuenta:      </b> ${this.usuario.cuenta} <br>
-        <br>Usuario:    </b> ${this.usuario.correo} <br>
-        <br>Nombre:     </b> ${this.asignado(this.usuario.nombre)} <br>
-        <br>Apellido:   </b> ${this.asignado(this.usuario.apellido)} <br>
-        <br>Educación:  </b> ${this.asignado(this.usuario.nivelEducacional.getEducacion())} <br>
-        <br>Nacimiento: </b> ${this.usuario.getFechaNacimiento()}
-      </small>
-    `;
-    this.mostrarMensajeAlerta(mensaje);
   }
 
   async mostrarMensajeAlerta(mensaje: string) {
     const alert = await this.alertController.create({
-      header: 'Datos personales',
+      header: 'Lo sentimos',
       message: mensaje,
       buttons: ['OK']
     });
