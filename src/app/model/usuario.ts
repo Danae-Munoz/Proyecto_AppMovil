@@ -49,9 +49,11 @@ export class Usuario extends Persona {
     return usuario;
   }
 
+  // Método corregido para buscar usuario por cuenta y contraseña
   public static buscarUsuarioValido(cuenta: string, password: string): Usuario | undefined {
     return Usuario.getListaUsuarios().find(
-      usu => usu.cuenta === cuenta && usu.password === password);
+      usu => usu.cuenta === cuenta && usu.password === password
+    );
   }
 
   public validarCuenta(): string {
@@ -63,12 +65,10 @@ export class Usuario extends Persona {
 
   public validarPassword(): string {
     if (this.password.trim() === '') {
-      return 'Para igresar al sistema debe escribir la contraseña.';
+      return 'Para ingresar al sistema debe escribir la contraseña.';
     }
-    for (let i = 0; i < this.password.length; i++) {
-      if ('0123456789'.indexOf(this.password.charAt(i)) === -1) {
-        return 'La contraseña debe ser numérica.';
-      }
+    if (isNaN(+this.password)) {
+      return 'La contraseña debe ser numérica.';
     }
     if (this.password.length !== 4) {
       return 'La contraseña debe ser numérica de 4 dígitos.';
@@ -85,6 +85,7 @@ export class Usuario extends Persona {
     if (!usu) return 'Las credenciales del usuario son incorrectas.';
     return '';
   }
+
   public actualizarDatos(
     cuenta: string,
     correo: string,
@@ -122,13 +123,13 @@ export class Usuario extends Persona {
   public static getListaUsuarios(): Usuario[] {
     return [
       Usuario.getNewUsuario(
-        'atorres', 
-        'atorres@duocuc.cl', 
-        '1234', 
-        '¿Cuál es tu animal favorito?', 
-        'gato', 
-        'Ana', 
-        'Torres', 
+        'atorres',
+        'atorres@duocuc.cl',
+        '1234',
+        '¿Cuál es tu animal favorito?',
+        'gato',
+        'Ana',
+        'Torres',
         NivelEducacional.buscarNivelEducacional(6)!,
         new Date(2000, 0, 1)
       ),
@@ -160,20 +161,21 @@ export class Usuario extends Persona {
   recibirUsuario(activatedRoute: ActivatedRoute, router: Router) {
     activatedRoute.queryParams.subscribe(() => {
       const nav = router.getCurrentNavigation();
-      if (nav) {
-        if (nav.extras.state) {
-          const cuenta = nav.extras.state['cuenta'];
-          const password = nav.extras.state['password'];
-          const usu = Usuario.buscarUsuarioValido(cuenta, password)!;
-          this.cuenta = usu.cuenta;
-          this.correo = usu.correo;
-          this.password = usu.password;
-          this.preguntaSecreta = usu.preguntaSecreta;
-          this.respuestaSecreta = usu.respuestaSecreta;
-          this.nombre = usu.nombre;
-          this.apellido = usu.apellido;
-          this.nivelEducacional = usu.nivelEducacional;
-          this.fechaNacimiento = usu.fechaNacimiento;
+      if (nav && nav.extras.state) {
+        const { cuenta, password } = nav.extras.state;
+        const usu = Usuario.buscarUsuarioValido(cuenta, password);
+        if (usu) {
+          this.actualizarDatos(
+            usu.cuenta, 
+            usu.correo, 
+            usu.password, 
+            usu.preguntaSecreta, 
+            usu.respuestaSecreta, 
+            usu.nombre, 
+            usu.apellido, 
+            usu.nivelEducacional, 
+            usu.fechaNacimiento
+          );
           return;
         }
       }
@@ -191,23 +193,15 @@ export class Usuario extends Persona {
     router.navigate([pagina], navigationExtras);
   }
 
-
-
-  public listaUsuariosValidos(): Usuario[] {
-    const lista = [];
-    lista.push(new Usuario( ));
-    return lista;
+  public static buscarUsuarioPorCorreo(correo: string): Usuario | undefined {
+    return Usuario.getListaUsuarios().find(usuario => usuario.correo === correo);
   }
-
-  public buscarUsuarioValido(correo: string, contrasena: string): Usuario | undefined {
-    return this.listaUsuariosValidos().find(usuario => usuario.correo === this.correo && usuario.confirmPassword === this.confirmPassword);
-  }
-
-  public buscarUsuarioPorCorreo(correo: string): Usuario | undefined {
-    return this.listaUsuariosValidos().find(usuario => usuario.correo === this.correo);
-  }
-
+  
+  
 }
+
+
+
 
 
 

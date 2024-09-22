@@ -44,9 +44,8 @@ export class LoginPage implements OnInit {
   }
 
   validarUsuario(usuario: Usuario): boolean {
-    const usu = this.usuario.buscarUsuarioValido(
-      usuario.correo, usuario.password
-    );
+    const usu = Usuario.buscarUsuarioValido(this.usuario.cuenta, this.usuario.password);
+
 
     if (usu) {
       this.usuario = usu; // Actualiza la instancia de usuario
