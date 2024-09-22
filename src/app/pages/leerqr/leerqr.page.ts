@@ -1,3 +1,4 @@
+
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { Asistencia } from 'src/app/model/asistencia';
@@ -168,8 +169,4 @@ export class LeerqrPage implements OnInit {
       this.datosQR = 'No se encontró un código QR en la imagen.';
     }
   }
-  
-
-  
-
 }

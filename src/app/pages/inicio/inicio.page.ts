@@ -1,17 +1,23 @@
 import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AlertController } from '@ionic/angular';
+import { AlertController, IonicModule } from '@ionic/angular';
 import { NivelEducacional } from 'src/app/model/nivel-educacional';
 import { Usuario } from 'src/app/model/usuario';
 import { AnimationController} from '@ionic/angular';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { MiclasePageModule } from '../miclase/miclase.module';
+import { MisdatosPageModule } from '../misdatos/misdatos.module';
 
 @Component({
-  selector: 'app-home',
+  selector: 'app-inicio',
   templateUrl: 'inicio.page.html',
   styleUrls: ['inicio.page.scss'],
+
 })
 
 export class InicioPage implements AfterViewInit {
+  
 
   @ViewChild('titulo', { read: ElementRef }) itemTitulo!: ElementRef;
   @ViewChild('page', { read: ElementRef }) page!: ElementRef;
