@@ -11,26 +11,24 @@
 </ion-header>
 <br>
 <ion-content [fullscreen]="true">
-  <img src="/assets/icon/c-28b93bf742.webp" class="img-fluid" style="position: absolute; right: 0; top: 0; z-index: -100; WIDTH:100%; height: 100%;">
+  <img src="/assets/icon/c-28b93bf742.webp" class="img-fluid" style="position: absolute; right: 0; top: 0; z-index: -100; width:100%; height: 100%;">
   <div class="centrado">
     <ion-card-content class="login ion-fade-in-up ion-animatable">
       <ion-item>
         <ion-label position="floating">Correo</ion-label>
-      <ion-input placeholder="" [(ngModel)]="usuario.correo"></ion-input>
+        <ion-input placeholder="" [(ngModel)]="usuario.correo"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label position="floating">Contraseña</ion-label>
-      <ion-input type="password" placeholder="" [(ngModel)]="usuario.password"></ion-input>
+        <ion-input type="password" placeholder="" [(ngModel)]="usuario.password"></ion-input>
       </ion-item>
       <ion-row>
         <ion-col size="12">
           <br>
-          <ion-button shape="block" (click)="login()">Iniciar Sesión</ion-button>
-    <ion-button expand="block" class="ion-margin-top"  (click)="contrasena()"> He olvidado mi contraseña </ion-button>
+          <ion-button expand="block" (click)="login()">Iniciar Sesión</ion-button>
+          <ion-button expand="block" class="ion-margin-top" (click)="contrasena()">He olvidado mi contraseña</ion-button>
         </ion-col>
       </ion-row>
     </ion-card-content>
-  
-    <ion-alert
-    header="Aviso"
-    message="Credenciales inválidas">
+  </div>
+</ion-content>

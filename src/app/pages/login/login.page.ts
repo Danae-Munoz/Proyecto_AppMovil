@@ -10,10 +10,6 @@ import { ToastController } from '@ionic/angular';
 })
 export class LoginPage implements OnInit {
 
-  isAlertOpen: boolean = false; 
-  alertButtons: any[] = []; 
-
-
   public usuario: Usuario = new Usuario(); // Inicializa un usuario
 
   constructor(private router: Router, private toastController: ToastController) {}
@@ -39,13 +35,8 @@ export class LoginPage implements OnInit {
     this.router.navigate(['principal'], navigationExtras);
   }
 
-  recuperar(): void {
-    this.router.navigate(['/correo']);
-  }
-
   validarUsuario(usuario: Usuario): boolean {
-    const usu = Usuario.buscarUsuarioValido(this.usuario.cuenta, this.usuario.password);
-
+    const usu = Usuario.buscarUsuarioValido(this.usuario.correo, this.usuario.password);
 
     if (usu) {
       this.usuario = usu; // Actualiza la instancia de usuario
@@ -64,3 +55,4 @@ export class LoginPage implements OnInit {
     toast.present();
   }
 }
+
