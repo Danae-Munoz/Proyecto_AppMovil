@@ -20,37 +20,37 @@ export class LoginPage implements OnInit {
     this.router.navigate(['correo']);
   }
 
-  login(): void {
+  ingresar(): void {
     if (!this.validarUsuario(this.usuario)) {
       return;
     }
 
-    this.mostrarMensaje('¡Bienvenido!');
+    this.mostrarMensajeEmergente('¡Bienvenido(a) al Sistema de Asistencia DUOC!');
 
     const navigationExtras: NavigationExtras = {
       state: {
         usuario: this.usuario
       }
     };
-    this.router.navigate(['principal'], navigationExtras);
+    this.usuario.navegarEnviandousuario(this.router, '/inicio');
   }
 
   validarUsuario(usuario: Usuario): boolean {
-    const usu = Usuario.buscarUsuarioValido(this.usuario.correo, this.usuario.password);
+    const usu = Usuario.buscarUsuarioValido(this.usuario.cuenta, this.usuario.password);
 
     if (usu) {
       this.usuario = usu; // Actualiza la instancia de usuario
       return true;
     } else {
-      this.mostrarMensaje('Las credenciales no son correctas!');
+      this.mostrarMensajeEmergente('Las credenciales no son correctas!');
       return false;
     }
   }
 
-  async mostrarMensaje(mensaje: string, duracion?: number) {
+  async mostrarMensajeEmergente(mensaje: string, duracion?: number) {
     const toast = await this.toastController.create({
         message: mensaje,
-        duration: duracion ? duracion : 2000
+        duration: duracion? duracion: 2000
       });
     toast.present();
   }

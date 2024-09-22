@@ -186,7 +186,7 @@ export class Usuario extends Persona {
   navegarEnviandousuario(router: Router, pagina: string) {
     const navigationExtras: NavigationExtras = {
       state: {
-        cuenta: this.cuenta,
+        cuenta: this.cuenta, 
         password: this.password,
       }
     }
