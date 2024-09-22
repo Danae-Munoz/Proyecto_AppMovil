@@ -190,4 +190,24 @@ export class Usuario extends Persona {
     }
     router.navigate([pagina], navigationExtras);
   }
+
+
+
+  public listaUsuariosValidos(): Usuario[] {
+    const lista = [];
+    lista.push(new Usuario( ));
+    return lista;
+  }
+
+  public buscarUsuarioValido(correo: string, contrasena: string): Usuario | undefined {
+    return this.listaUsuariosValidos().find(usuario => usuario.correo === this.correo && usuario.confirmPassword === this.confirmPassword);
+  }
+
+  public buscarUsuarioPorCorreo(correo: string): Usuario | undefined {
+    return this.listaUsuariosValidos().find(usuario => usuario.correo === this.correo);
+  }
+
 }
+
+
+

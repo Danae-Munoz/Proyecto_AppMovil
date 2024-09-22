@@ -1,48 +1,67 @@
-import { OnInit } from '@angular/core';
-import { Component } from '@angular/core';
-import { Router, NavigationExtras, ActivatedRoute } from '@angular/router';
-import { ToastController } from '@ionic/angular';
-import { NivelEducacional } from 'src/app/model/nivel-educacional';
+import { Component, OnInit } from '@angular/core';
+import { NavigationExtras, Router } from '@angular/router';
 import { Usuario } from 'src/app/model/usuario';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
 })
-export class LoginPage implements OnInit{
+export class LoginPage implements OnInit {
 
-  public usuario: Usuario;
+  isAlertOpen: boolean = false; 
+  alertButtons: any[] = []; 
 
-  constructor(
-      private router: Router
-    , private activatedRoute: ActivatedRoute
-    , private toastController: ToastController) 
-  {
-    this.usuario = new Usuario();
-    this.usuario.recibirUsuario(activatedRoute, router);
-    this.usuario.cuenta = 'atorres';
-    this.usuario.password = '1234';
+
+  public usuario: Usuario = new Usuario(); // Inicializa un usuario
+
+  constructor(private router: Router, private toastController: ToastController) {}
+
+  ngOnInit(): void {}
+
+  contrasena(): void {
+    this.router.navigate(['correo']);
   }
 
-  ingresar() {
-    const error = this.usuario.validarUsuario();
-    if(error) {
-      this.mostrarMensajeEmergente(error);
+  login(): void {
+    if (!this.validarUsuario(this.usuario)) {
       return;
-    } 
-    this.mostrarMensajeEmergente('¡Bienvenido(a) al Sistema de Asistencia DUOC!');
-    this.usuario.navegarEnviandousuario(this.router, '/inicio');
+    }
+
+    this.mostrarMensaje('¡Bienvenido!');
+
+    const navigationExtras: NavigationExtras = {
+      state: {
+        usuario: this.usuario
+      }
+    };
+    this.router.navigate(['principal'], navigationExtras);
   }
 
-  async mostrarMensajeEmergente(mensaje: string, duracion?: number) {
+  recuperar(): void {
+    this.router.navigate(['/correo']);
+  }
+
+  validarUsuario(usuario: Usuario): boolean {
+    const usu = this.usuario.buscarUsuarioValido(
+      usuario.correo, usuario.password
+    );
+
+    if (usu) {
+      this.usuario = usu; // Actualiza la instancia de usuario
+      return true;
+    } else {
+      this.mostrarMensaje('Las credenciales no son correctas!');
+      return false;
+    }
+  }
+
+  async mostrarMensaje(mensaje: string, duracion?: number) {
     const toast = await this.toastController.create({
         message: mensaje,
-        duration: duracion? duracion: 2000
+        duration: duracion ? duracion : 2000
       });
     toast.present();
-  }
-
-  ngOnInit(){
   }
 }

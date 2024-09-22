@@ -28,17 +28,27 @@ const routes: Routes = [
     loadChildren: () => import('./pages/miclase/miclase.module').then( m => m.MiclasePageModule)
   },
   {
-    path: 'miclase',
-    loadChildren: () => import('./pages/miclase/miclase.module').then( m => m.MiclasePageModule)
+    path: 'correcto',
+    loadChildren: () => import('./pages/correcto/correcto.module').then( m => m.CorrectoPageModule)
   },
   {
     path: 'correo',
-    loadChildren: () => import('./pages/correo/correo-routing.module').then( m => m.CorreoPageRoutingModule)
+    loadChildren: () => import('./pages/correo/correo.module').then( m => m.CorreoPageModule)
+  },
+  {
+    path: 'incorrecto',
+    loadChildren: () => import('./pages/incorrecto/incorrecto.module').then( m => m.IncorrectoPageModule)
   },
   {
     path: 'pregunta',
-    loadChildren: () => import('./pages/pregunta/pregunta-routing.module').then( m => m.PreguntaPageRoutingModule)
+    loadChildren: () => import('./pages/pregunta/pregunta.module').then( m => m.PreguntaPageModule)
   },
+  {
+    path: 'miclase/:bloqueInicio/:bloqueTermino/:dia/:horaFin/:horaInicio/:idAsignatura/:nombreAsignatura/:nombreProfesor/:seccion/:sede',
+    loadChildren: () => import('./pages/miclase/miclase.module').then(m => m.MiclasePageModule)
+  }
+
+
 
 ];
 
