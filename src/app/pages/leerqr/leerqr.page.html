@@ -35,7 +35,7 @@
   
     <ion-card style="background-color: rgba(237, 219, 196, 0.773);">
       <ion-card-header>
-        <ion-card-title>Los datos del Código QR son los siguientes:</ion-card-title>
+        <ion-card-title style=" color: black;"> Los datos del Código QR son los siguientes:</ion-card-title>
       </ion-card-header>
       <ion-card-content class="borde">
         <h2 *ngIf="datosQR">{{ datosQR }}</h2>
@@ -52,10 +52,6 @@
       Detener escaneo de QR
     </ion-button>
 
-    <ion-button (click)="selectImage()" expand="full" shape="round" class="dark-orange-button">
-      <ion-icon slot="start" name="image-outline"></ion-icon>
-      Seleccionar Imagen
-    </ion-button>
   </ion-content>
     
 

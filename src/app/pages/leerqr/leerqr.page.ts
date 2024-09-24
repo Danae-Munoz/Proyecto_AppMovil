@@ -82,6 +82,7 @@ export class LeerqrPage implements OnInit {
   public mostrarDatosQROrdenados(datosQR: string): void {
     this.datosQR = datosQR;
     const objetoDatosQR = JSON.parse(datosQR);
+    this.asistencia.bloqueInicio= objetoDatosQR.bloqueInicio;
   }
 
   public detenerEscaneoQR(): void {
