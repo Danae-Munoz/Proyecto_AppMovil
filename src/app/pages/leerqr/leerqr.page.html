@@ -5,10 +5,11 @@
         <ion-col size="3">
           <ion-img src="/assets/img/Logo_DuocUC.svg.png"></ion-img>
         </ion-col>
+  
         <ion-col>
           <ion-title #titulo class="ion-text-left ion-text font-size-18 animate-text">
             <div>
-              <br>
+            <br>
               Sistema de Asistencia DUOC
             </div>
           </ion-title>
@@ -18,6 +19,11 @@
   </ion-header>
   
   <ion-content [fullscreen]="true" class="background-container">
+      <ul class="breadcrumb">
+        <li><a (click)="navegar('/leerqr')">Inicio</a></li>
+        <li><a (click)="navegar('/misdatos')">Mis Datos</a></li>
+        <li><a (click)="navegar('/miclase')">Mi Clase</a></li>
+      </ul>
     <div class="background-image"></div> <!-- Imagen de fondo -->
     
     <ion-card style="background-color: rgba(237, 219, 196, 0.773);">
@@ -57,13 +63,5 @@
     
 
 <div class="background-footer"> 
-  <ion-button shape="round" (click)="navegar('/inicio')" class="dark-orange-button">  
-    <ion-icon slot="start" name="home"></ion-icon>  
-    Inicio  
-  </ion-button>    
-  <ion-button shape="round" (click)="navegar('/login')" class="dark-orange-button">  
-    <ion-icon slot="start" name="log-out"></ion-icon>  
-    Salir  
-  </ion-button>  
 </div>
 </ion-app>

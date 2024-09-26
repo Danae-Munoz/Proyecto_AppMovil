@@ -61,15 +61,18 @@ ion-img {
   filter: blur(3px); /* Ajusta el nivel de desenfoque */
   z-index: -1;
 }
-/* CSS para la animación del texto */
-.animate-text {
-  animation: fadeIn 2s ease-in-out;
-}
+
 /* Asegúrate de que los elementos internos no se vean afectados */
 .background-transparent * {
   position: relative;
   z-index: 1;
 }
+/* CSS para la animación del texto */
+.animate-text {
+  animation: fadeIn 2s ease-in-out;
+}
+/* Asegúrate de que los elementos internos no se vean afectados */
+
 .background-container {
   position: relative; /* Permite el posicionamiento absoluto de los hijos */
   height: 10%; /* Asegura que ocupe toda la altura */
@@ -270,35 +273,6 @@ main {
   color: #000000;
 }
 
-.background-transparent {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-}
-
-.background-transparent::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: url('../../../assets/img/si.jpg');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  opacity: 0.9; /* Ajusta el nivel de transparencia */
-  filter: blur(3px); /* Ajusta el nivel de desenfoque */
-  z-index: -1;
-}
-
-/* Asegúrate de que los elementos internos no se vean afectados */
-.background-transparent * {
-  position: relative;
-  z-index: 1;
-}
 
 
 .boton-limpiar {
@@ -428,6 +402,22 @@ main {
   content: ">";
   margin-left: 10px;
   color: rgb(248, 200, 158);
+}
+
+.book {
+  width: 71%;
+  height: 101%;
+  perspective: 1000px;
+  margin: 10px auto;
+  position: relative;
+  overflow-y: hidden;
+  overflow-x: hidden;
+  background-size: cover; /* Ajusta la imagen para cubrir todo el contenedor */
+  background-position: center; /* Centra la imagen */
+  background-repeat: no-repeat; /* Evita que la imagen se repita */
+  background-attachment: scroll; /* Hace que la imagen se desplace con el contenido */
+  opacity: 0.9; /* Ajusta la transparencia de la imagen */
+  color: #000000;
 }
 
 .breadcrumb li:last-child::after {
