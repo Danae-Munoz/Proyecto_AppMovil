@@ -7,7 +7,7 @@ import jsQR, { QRCode } from 'jsqr';
 import { AfterViewInit} from '@angular/core';
 import { AlertController } from '@ionic/angular';
 import { NivelEducacional } from 'src/app/model/nivel-educacional';
-import { AnimationController} from '@ionic/angular';
+import { AnimationController, NavController} from '@ionic/angular';
 
 @Component({
   selector: 'app-leerqr',
@@ -30,7 +30,8 @@ export class LeerqrPage implements OnInit {
     private activatedRoute: ActivatedRoute, 
     private router: Router,
     private alertController: AlertController,
-    private animationController: AnimationController
+    private animationController: AnimationController,
+    private navCtrl: NavController
 
   ) { 
     this.usuario = new Usuario();
@@ -82,6 +83,32 @@ export class LeerqrPage implements OnInit {
   public mostrarDatosQROrdenados(datosQR: string): void {
     this.datosQR = datosQR;
     const objetoDatosQR = JSON.parse(datosQR);
+    this.asistencia.bloqueInicio = objetoDatosQR.bloqueInicio;
+    this.asistencia.bloqueTermino = objetoDatosQR.bloqueTermino;
+    this.asistencia.dia = objetoDatosQR.dia;
+    this.asistencia.horaFin = objetoDatosQR.horaFin;
+    this.asistencia.horaInicio = objetoDatosQR.horaInicio;
+    this.asistencia.idAsignatura = objetoDatosQR.idAsignatura;
+    this.asistencia.nombreAsignatura = objetoDatosQR.nombreAsignatura;
+    this.asistencia.nombreProfesor = objetoDatosQR.nombreProfesor;
+    this.asistencia.seccion = objetoDatosQR.seccion;
+    this.asistencia.sede = objetoDatosQR.sede;
+
+
+    // Navegar a la otra página con los datos como parámetros
+    this.navCtrl.navigateForward([
+      '/miclase',
+      this.asistencia.bloqueInicio,
+      this.asistencia.bloqueTermino,
+      this.asistencia.dia,
+      this.asistencia.horaFin,
+      this.asistencia.horaInicio,
+      this.asistencia.idAsignatura,
+      this.asistencia.nombreAsignatura,
+      this.asistencia.nombreProfesor,
+      this.asistencia.seccion,
+      this.asistencia.sede
+    ]);
   }
 
   public detenerEscaneoQR(): void {
