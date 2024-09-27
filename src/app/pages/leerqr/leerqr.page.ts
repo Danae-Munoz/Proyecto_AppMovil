@@ -16,6 +16,11 @@ import { AnimationController, NavController} from '@ionic/angular';
 })
 export class LeerqrPage implements OnInit {
 
+  correo: string = '';
+  contrasena: string ='';
+  nombre: string = '';
+  
+
   @ViewChild('video') private video!: ElementRef;
   @ViewChild('page', { read: ElementRef }) page!: ElementRef;
   @ViewChild('canvas') private canvas!: ElementRef;
@@ -82,34 +87,35 @@ export class LeerqrPage implements OnInit {
 
   public mostrarDatosQROrdenados(datosQR: string): void {
     this.datosQR = datosQR;
-    const objetoDatosQR = JSON.parse(datosQR);
-    this.asistencia.bloqueInicio = objetoDatosQR.bloqueInicio;
-    this.asistencia.bloqueTermino = objetoDatosQR.bloqueTermino;
-    this.asistencia.dia = objetoDatosQR.dia;
-    this.asistencia.horaFin = objetoDatosQR.horaFin;
-    this.asistencia.horaInicio = objetoDatosQR.horaInicio;
-    this.asistencia.idAsignatura = objetoDatosQR.idAsignatura;
-    this.asistencia.nombreAsignatura = objetoDatosQR.nombreAsignatura;
-    this.asistencia.nombreProfesor = objetoDatosQR.nombreProfesor;
-    this.asistencia.seccion = objetoDatosQR.seccion;
-    this.asistencia.sede = objetoDatosQR.sede;
+    
+    // Convertir el string de datos QR a objeto JSON
+    try {
+        const objetoDatosQR = JSON.parse(datosQR);
+        
+        // Rellenar los campos de asistencia con los datos del QR
+        this.asistencia.bloqueInicio = objetoDatosQR.bloqueInicio;
+        this.asistencia.bloqueTermino = objetoDatosQR.bloqueTermino;
+        this.asistencia.dia = objetoDatosQR.dia;
+        this.asistencia.horaFin = objetoDatosQR.horaFin;
+        this.asistencia.horaInicio = objetoDatosQR.horaInicio;
+        this.asistencia.idAsignatura = objetoDatosQR.idAsignatura;
+        this.asistencia.nombreAsignatura = objetoDatosQR.nombreAsignatura;
+        this.asistencia.nombreProfesor = objetoDatosQR.nombreProfesor;
+        this.asistencia.seccion = objetoDatosQR.seccion;
+        this.asistencia.sede = objetoDatosQR.sede;
 
+        // Navegar a la página de clase, pasando el usuario y los datos de asistencia
+        this.router.navigate(['/miclase'], { 
+            state: { 
+                usuario: this.usuario, 
+                asistencia: this.asistencia 
+            } 
+        });
+    } catch (error) {
+        console.error('Error al parsear los datos QR:', error);
+    }
+}
 
-    // Navegar a la otra página con los datos como parámetros
-    this.navCtrl.navigateForward([
-      '/miclase',
-      this.asistencia.bloqueInicio,
-      this.asistencia.bloqueTermino,
-      this.asistencia.dia,
-      this.asistencia.horaFin,
-      this.asistencia.horaInicio,
-      this.asistencia.idAsignatura,
-      this.asistencia.nombreAsignatura,
-      this.asistencia.nombreProfesor,
-      this.asistencia.seccion,
-      this.asistencia.sede
-    ]);
-  }
 
   public detenerEscaneoQR(): void {
     this.escaneando = false;
@@ -238,4 +244,22 @@ export class LeerqrPage implements OnInit {
     }
     return 'No asignado';
   }
+
+  miclase(){
+    let extras: NavigationExtras ={
+      state:{
+        user: this.correo,
+        pass:this.contrasena
+
+      // state: propiedad para recibir variables para que puedan navegar
+      }
+    }
+    
+  // let para crear variables en JavaScript, las variables existen solo donde se definen.
+  // si hay llaves {es un objeto}
+
+    this.router.navigate(['miclase'],extras)
+    
+  }
+
 }
