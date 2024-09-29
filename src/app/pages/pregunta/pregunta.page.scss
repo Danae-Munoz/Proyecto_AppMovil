@@ -38,7 +38,19 @@ img.img-fluid {
   font-size: 2rem;
   animation: moverTittle 5s ease-in-out infinite; /* Usar la animación definida */
 }
+.orange-button {
+  --background: #FFA500; /* Color de fondo naranja */
+  --color: #ffffff; /* Color del texto blanco */
+  --border-radius: 25px; /* Redondeo de los bordes */
+  border: none; /* Eliminar el borde por defecto */
+  padding: 10px 20px; /* Ajustar el tamaño del botón */
+  text-align: center; /* Centrar el texto */
+  display: inline-block; /* Asegurar que el botón se comporte correctamente */
+}
 
+.orange-button:hover {
+  --background: #FF8C00; /* Color de fondo naranja más oscuro al pasar el ratón */
+}
 /* Agrega una capa de superposición semitransparente */
 .background-overlay {
   width: 100%;

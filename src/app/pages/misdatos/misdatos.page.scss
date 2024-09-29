@@ -265,7 +265,10 @@ main {
 .orange-button:hover {
   --background: #FF8C00; /* Color de fondo naranja más oscuro al pasar el ratón */
 }
-
+.background-container {
+  position: relative; /* Permite el posicionamiento absoluto de los hijos */
+  height: 10%; /* Asegura que ocupe toda la altura */
+}
 .btn-orange {
   --background: #FFA500; /* Fondo naranja */
   --color: #FFFFFF; /* Texto blanco */

@@ -25,7 +25,7 @@
     <li><a (click)="navegar('/miclase')">Mi Clase</a></li>
     <!--<li><ion-img class="logo-img" src="/assets/img/Logo_DuocUC.svg.png"></ion-img></li>-->
     </ul>
-    <ion-content  [fullscreen]="true" #page class="ion-padding-horizontal page" >
+    <ion-content [fullscreen]="true" #page class=" page">
     
       <ion-toolbar class="ion-padding-top">
       <h1 class="ion-text-center">
@@ -38,8 +38,8 @@
       </h4>
       </ion-toolbar>
     
-      <ion-item #itemCuenta>
-      <ion-input [(ngModel)]="usuario.cuenta"
+      <ion-item #itemCuenta >
+      <ion-input  [(ngModel)]="usuario.cuenta"
           label="Cuenta" labelPlacement="floating"
           placeholder="Ej: atorres"></ion-input>
       </ion-item>

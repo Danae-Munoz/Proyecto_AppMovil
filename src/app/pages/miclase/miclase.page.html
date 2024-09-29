@@ -1,65 +1,59 @@
 <ion-app>  
   <ion-header class="header-container">  
     <ion-toolbar class="transparent-toolbar">  
-      <ion-col size-md="3">  
-        <ion-img src="../../../assets/img/Logo_DuocUC.svg.png" class="logo ion-margin-left"></ion-img>  
-      </ion-col>  
-      <ion-title #titulo class="ion-text-left ion-text titulo-header">  
-        <div>SISTEMA DE ASISTENCIA DUOC</div>  
+      <ion-img src="../../../assets/img/Logo_DuocUC.svg.png" class="logo ion-margin-left"></ion-img>  
+      <ion-title #titulo class="ion-text-left titulo-header">  
+        SISTEMA DE ASISTENCIA DUOC  
       </ion-title>  
     </ion-toolbar>  
   </ion-header>  
-  
+
   <ion-content [fullscreen]="true">  
     <div class="centrado">  
-      <ion-title class="ion-padding-top">  
-        <ion-label>  
-          <h1 class="ion-text-center titulo-asignatura">DATOS DE LA ASIGNATURA</h1>  
-          <br><br>  
-          <table>  
-            <tr>  
-              <td class="ancho_columna_titulos">Bloque de Inicio</td>  
-              <td id="data">{{bloqueInicio}}</td>  
-            </tr>  
-            <tr>  
-              <td>Bloque de Término</td>  
-              <td id="data">{{bloqueTermino}}</td>  
-            </tr>  
-            <tr>  
-              <td>Día</td>  
-              <td id="data">{{dia}}</td>  
-            </tr>  
-            <tr>  
-              <td>Hora de Fin</td>  
-              <td id="data">{{horaFin}}</td>  
-            </tr>  
-            <tr>  
-              <td>Hora de Inicio</td>  
-              <td id="data">{{horaInicio}}</td>  
-            </tr>  
-            <tr>  
-              <td>Sigla</td>  
-              <td id="data">{{idAsignatura}}</td>  
-            </tr>  
-            <tr>  
-              <td>Nombre de Asignatura</td>  
-              <td id="data">{{nombreAsignatura}}</td>  
-            </tr>  
-            <tr>  
-              <td>Nombre del Profesor</td>  
-              <td id="data">{{nombreProfesor}}</td>  
-            </tr>  
-            <tr>  
-              <td>Sección</td>  
-              <td id="data">{{seccion}}</td>  
-            </tr>  
-            <tr>  
-              <td>Sede</td>  
-              <td id="data">{{sede}}</td>  
-            </tr>  
-          </table>  
-        </ion-label>  
-      </ion-title>  
+      <h1 class="ion-text-center titulo-asignatura">DATOS DE LA ASIGNATURA</h1>  
+      <br><br>  
+      <table>  
+        <tr>  
+          <td class="ancho_columna_titulos">Bloque de Inicio</td>  
+          <td>{{asistencia.bloqueInicio}}</td>  
+        </tr>  
+        <tr>  
+          <td>Bloque de Término</td>  
+          <td>{{asistencia.bloqueTermino}}</td>  
+        </tr>  
+        <tr>  
+          <td>Día</td>  
+          <td>{{asistencia.dia}}</td>  
+        </tr>  
+        <tr>  
+          <td>Hora de Fin</td>  
+          <td>{{asistencia.horaFin}}</td>  
+        </tr>  
+        <tr>  
+          <td>Hora de Inicio</td>  
+          <td>{{asistencia.horaInicio}}</td>  
+        </tr>  
+        <tr>  
+          <td>Sigla</td>  
+          <td>{{asistencia.idAsignatura}}</td>  
+        </tr>  
+        <tr>  
+          <td>Nombre de Asignatura</td>  
+          <td>{{asistencia.nombreAsignatura}}</td>  
+        </tr>  
+        <tr>  
+          <td>Nombre del Profesor</td>  
+          <td>{{asistencia.nombreProfesor}}</td>  
+        </tr>  
+        <tr>  
+          <td>Sección</td>  
+          <td>{{asistencia.seccion}}</td>  
+        </tr>  
+        <tr>  
+          <td>Sede</td>  
+          <td>{{asistencia.sede}}</td>  
+        </tr>  
+      </table>  
       <br>  
       <ion-button class="btn-limpiar" expand="block" shape="round" routerLink="/miclase">  
         <ion-icon slot="start" name="trash-outline"></ion-icon>  
@@ -69,6 +63,7 @@
     </div>  
   </ion-content>  
 </ion-app>
+
 
 
 

@@ -1,4 +1,4 @@
-<ion-app>   
+<ion-app>
   <ion-header>
     <ion-toolbar>
       <ion-row class="background-transparent">
@@ -16,23 +16,27 @@
       </ion-row>
     </ion-toolbar>
   </ion-header>
-  
+
   <ion-content [fullscreen]="true" class="background-container">
+    <ul class="breadcrumb">
+      <li><a (click)="navegar('/leerqr')">Inicio</a></li>
+      <li><a (click)="navegar('/misdatos')">Mis Datos</a></li>
+      <li><a (click)="navegar('/miclase')">Mi Clase</a></li>
+    </ul>
+    
     <div class="background-image"></div> <!-- Imagen de fondo -->
     
     <ion-card style="background-color: rgba(237, 219, 196, 0.773);">
       <br>
-    <h1 class="ion-text-center" style="color: rgb(255, 145, 0);">
-      ¡Bienvenido(a) {{ usuario.nombre }} {{ usuario.apellido }}!
-    </h1>
-    <h1 class="ion-text-center" *ngIf="!datosQR" style="color: black;">Registra tu asistencia a clases</h1>
+      <h1 class="ion-text-center" style="color: rgb(255, 145, 0);">
+        ¡Bienvenido(a) {{ usuario.nombre }} {{ usuario.apellido }}!
+      </h1>
+      <h1 class="ion-text-center" *ngIf="!datosQR" style="color: black;">Registra tu asistencia a clases</h1>
     </ion-card>
     
     <video #video [hidden]="!escaneando" style="width: 100%"></video>
     <canvas #canvas hidden></canvas>
-
-
-  
+    
     <ion-card style="background-color: rgba(237, 219, 196, 0.773);">
       <ion-card-header>
         <ion-card-title>Los datos del Código QR son los siguientes:</ion-card-title>
@@ -42,6 +46,7 @@
         <h2 *ngIf="!datosQR">Sin información</h2>
       </ion-card-content>
     </ion-card>
+
     <ion-button *ngIf="!escaneando" (click)="comenzarEscaneoQR()" expand="full" shape="round" class="dark-orange-button">
       <ion-icon slot="start" name="videocam-outline"></ion-icon>
       Comenzar Escaneo de QR
@@ -51,22 +56,7 @@
       <ion-icon slot="start" name="stop-circle-outline"></ion-icon>
       Detener escaneo de QR
     </ion-button>
-
-    <ion-button (click)="selectImage()" expand="full" shape="round" class="dark-orange-button">
-      <ion-icon slot="start" name="image-outline"></ion-icon>
-      Seleccionar Imagen
-    </ion-button>
   </ion-content>
-    
 
-<div class="background-footer"> 
-  <ion-button shape="round" (click)="navegar('/inicio')" class="dark-orange-button">  
-    <ion-icon slot="start" name="home"></ion-icon>  
-    Inicio  
-  </ion-button>    
-  <ion-button shape="round" (click)="navegar('/login')" class="dark-orange-button">  
-    <ion-icon slot="start" name="log-out"></ion-icon>  
-    Salir  
-  </ion-button>  
-</div>
+  <div class="background-footer"></div>
 </ion-app>
