@@ -4,10 +4,7 @@ import { AlertController, IonicModule } from '@ionic/angular';
 import { NivelEducacional } from 'src/app/model/nivel-educacional';
 import { Usuario } from 'src/app/model/usuario';
 import { AnimationController} from '@ionic/angular';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { MiclasePageModule } from '../miclase/miclase.module';
-import { MisdatosPageModule } from '../misdatos/misdatos.module';
+
 
 @Component({
   selector: 'app-inicio',
@@ -161,7 +158,6 @@ export class InicioPage implements AfterViewInit {
   }
 
   navegar(pagina: string) {
-    this.usuario.navegarEnviandousuario(this.router, pagina);
+    this.usuario.navegarEnviandoUsuario(this.router, pagina);
   }
-
 }

@@ -8,62 +8,93 @@
     </ion-toolbar>  
   </ion-header>  
 
-  <ion-content [fullscreen]="true">  
-    <div class="centrado">  
-      <h1 class="ion-text-center titulo-asignatura">DATOS DE LA ASIGNATURA</h1>  
-      <br><br>  
-      <table>  
-        <tr>  
-          <td class="ancho_columna_titulos">Bloque de Inicio</td>  
-          <td>{{asistencia.bloqueInicio}}</td>  
-        </tr>  
-        <tr>  
-          <td>Bloque de Término</td>  
-          <td>{{asistencia.bloqueTermino}}</td>  
-        </tr>  
-        <tr>  
-          <td>Día</td>  
-          <td>{{asistencia.dia}}</td>  
-        </tr>  
-        <tr>  
-          <td>Hora de Fin</td>  
-          <td>{{asistencia.horaFin}}</td>  
-        </tr>  
-        <tr>  
-          <td>Hora de Inicio</td>  
-          <td>{{asistencia.horaInicio}}</td>  
-        </tr>  
-        <tr>  
-          <td>Sigla</td>  
-          <td>{{asistencia.idAsignatura}}</td>  
-        </tr>  
-        <tr>  
-          <td>Nombre de Asignatura</td>  
-          <td>{{asistencia.nombreAsignatura}}</td>  
-        </tr>  
-        <tr>  
-          <td>Nombre del Profesor</td>  
-          <td>{{asistencia.nombreProfesor}}</td>  
-        </tr>  
-        <tr>  
-          <td>Sección</td>  
-          <td>{{asistencia.seccion}}</td>  
-        </tr>  
-        <tr>  
-          <td>Sede</td>  
-          <td>{{asistencia.sede}}</td>  
-        </tr>  
-      </table>  
-      <br>  
-      <ion-button class="btn-limpiar" expand="block" shape="round" routerLink="/miclase">  
-        <ion-icon slot="start" name="trash-outline"></ion-icon>  
-        Limpiar datos  
-      </ion-button>  
-      <ion-button color="rgb(161, 72, 190)" expand="block" class="ion-margin-top" (click)="cerrarsesion()">Cerrar Sesión</ion-button>  
-    </div>  
-  </ion-content>  
-</ion-app>
-
-
-
-
+  <ion-content [fullscreen]="true" class="ion-padding-horizontal ion-text-center">
+    <div class="centrar">
+      <div class="enmarcar">
+        <h1> Bienvenido(a) {{ usuario.nombre }} {{ usuario.apellido }} </h1>
+  
+        <h1 *ngIf="!usuario.asistencia.idAsignatura">
+          Asistencia sin información
+        </h1>
+  
+        <div *ngIf="usuario.asistencia.idAsignatura">
+          <h1> Has quedado presente en tu clase </h1>
+          <table>
+            <tbody>
+              <tr>
+                <td>Bloque Inicio</td>
+                <td>{{ usuario.asistencia!.bloqueInicio }}</td>
+              </tr>
+              <tr>
+                <td>Bloque Término</td>
+                <td>{{ usuario.asistencia!.bloqueTermino }}</td>
+              </tr>
+              <tr>
+                <td>Día</td>
+                <td>{{ usuario.asistencia!.dia }}</td>
+              </tr>
+              <tr>
+                <td>Hora Inicio</td>
+                <td>{{ usuario.asistencia!.horaInicio }}</td>
+              </tr>
+              <tr>
+                <td>Hora Fin</td>
+                <td>{{ usuario.asistencia!.horaFin }}</td>
+              </tr>
+              <tr>
+                <td>ID Asignatura</td>
+                <td>{{ usuario.asistencia!.idAsignatura }}</td>
+              </tr>
+              <tr>
+                <td>Nombre Asignatura</td>
+                <td>{{ usuario.asistencia!.nombreAsignatura }}</td>
+              </tr>
+              <tr>
+                <td>Nombre Profesor</td>
+                <td>{{ usuario.asistencia!.nombreProfesor }}</td>
+              </tr>
+              <tr>
+                <td>Sección</td>
+                <td>{{ usuario.asistencia!.seccion }}</td>
+              </tr>
+              <tr>
+                <td>Sede</td>
+                <td>{{ usuario.asistencia!.sede }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </ion-content>
+  
+  <ion-footer>
+    <ion-toolbar color="primary" class="ion-text-center">
+      
+      <ion-button shape="round" size="small" color="tertiary"
+          (click)="navegar('/inicio')">
+        <ion-icon slot="start" name="home"></ion-icon>
+        Inicio
+      </ion-button>
+  
+      <ion-button shape="round" size="small" color="tertiary"
+          (click)="navegar('/miclase')">
+        <ion-icon slot="start" name="school"></ion-icon>
+        Mi clase
+      </ion-button>
+  
+      <ion-button shape="round" size="small" color="tertiary"
+          (click)="navegar('/misdatos')">
+        <ion-icon slot="start" name="person"></ion-icon>
+        Mis datos
+      </ion-button>
+  
+      <ion-button shape="round" size="small" color="tertiary"
+          (click)="navegar('/ingreso')">
+        <ion-icon slot="start" name="log-out"></ion-icon>
+        Salir
+      </ion-button>
+  
+    </ion-toolbar>
+  </ion-footer>
+  

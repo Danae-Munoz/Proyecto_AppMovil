@@ -12,9 +12,9 @@ import {  Navigation, NavigationExtras } from '@angular/router';
 export class CorrectoPage implements OnInit {
   //public usuario: Usuario | undefined;
   public usuario: Usuario = new Usuario();
-  public mdl_contrasena: string='';
-  public mdl_nombre: string = '';
-  public mdl_correo: string = '';
+  public contrasena: string='';
+  public nombre: string = '';
+  public correo: string = '';
 
   constructor(private activatedRoute: ActivatedRoute, private router: Router,)
   {
