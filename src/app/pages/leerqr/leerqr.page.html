@@ -19,9 +19,10 @@
 
   <ion-content [fullscreen]="true" class="background-container">
     <ul class="breadcrumb">
-      <li><a (click)="navegar('/leerqr')">Inicio</a></li>
+      <li><a [routerLink]="['/leerqr']">Inicio</a></li>
       <li><a (click)="navegar('/misdatos')">Mis Datos</a></li>
       <li><a (click)="navegar('/miclase')">Mi Clase</a></li>
+      <li><a (click)="navegar('/login')">Salir</a></li>
     </ul>
     
     <div class="background-image"></div> <!-- Imagen de fondo -->

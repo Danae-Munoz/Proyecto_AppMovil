@@ -3,6 +3,12 @@ import { NivelEducacional } from './nivel-educacional';
 import { Persona } from "./persona";
 
 export class Usuario extends Persona {
+  navegarEnviandoUsuario(router: Router, pagina: string) {
+    throw new Error('Method not implemented.');
+  }
+  actualizarUsuario() {
+    throw new Error('Method not implemented.');
+  }
 
   public cuenta: string;
   public correo: string;

@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
+import { AfterViewInit, ApplicationRef, Component, ElementRef, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { NivelEducacional } from 'src/app/model/nivel-educacional';
@@ -7,25 +7,21 @@ import { AnimationController} from '@ionic/angular';
 
 @Component({
   selector: 'app-misdatos',
-  templateUrl: './misdatos.page.html',
-  styleUrls: ['./misdatos.page.scss'],
+  templateUrl: 'misdatos.page.html',
+  styleUrls: ['misdatos.page.scss'],
 })
+
 export class MisdatosPage implements AfterViewInit {
 
   @ViewChild('titulo', { read: ElementRef }) itemTitulo!: ElementRef;
   @ViewChild('page', { read: ElementRef }) page!: ElementRef;
   @ViewChild('itemCuenta', { read: ElementRef }) itemCuenta!: ElementRef;
   @ViewChild('itemNombre', { read: ElementRef }) itemNombre!: ElementRef;
-  @ViewChild('itemCorreo', { read: ElementRef }) itemCorreo!: ElementRef;
   @ViewChild('itemApellido', { read: ElementRef }) itemApellido!: ElementRef;
-  @ViewChild('itemPreguntaSecreta', { read: ElementRef }) itemPreguntaSecreta!: ElementRef;
-  @ViewChild('itemRespuestaSecreta', { read: ElementRef }) itemRespuestaSecreta!: ElementRef;
   @ViewChild('itemEducacion', { read: ElementRef }) itemEducacion!: ElementRef;
   @ViewChild('itemFechaNacimiento', { read: ElementRef }) itemFechaNacimiento!: ElementRef;
-  @ViewChild('itemPassword', { read: ElementRef }) itemPassword!: ElementRef;
   
   public listaNivelesEducacionales = NivelEducacional.getNivelesEducacionales();
-  
   public usuario: Usuario;
 
   constructor(
@@ -43,16 +39,17 @@ export class MisdatosPage implements AfterViewInit {
     this.animarVueltaDePagina();
   }
 
+  public actualizarNivelEducacional(event: any) {
+    this.usuario.nivelEducacional 
+      = NivelEducacional.buscarNivelEducacional(event.detail.value)!;
+  }
+
   limpiarPagina() {
     this.usuario.cuenta = '';
     this.usuario.nombre = '';
     this.usuario.apellido = '';
-    this.usuario.correo = '';
-    this.usuario.preguntaSecreta = '';
-    this.usuario.respuestaSecreta = '';
     this.usuario.nivelEducacional = NivelEducacional.buscarNivelEducacional(1)!;
     this.usuario.fechaNacimiento = undefined;
-    this.usuario.password = '';
   }
 
   limpiarAnimandoDerIzq() {
@@ -60,12 +57,8 @@ export class MisdatosPage implements AfterViewInit {
     this.animarDerIzq(this.itemCuenta.nativeElement, 100);
     this.animarDerIzq(this.itemNombre.nativeElement, 200);
     this.animarDerIzq(this.itemApellido.nativeElement, 300);
-    this.animarDerIzq(this.itemCorreo.nativeElement, 400);
-    this.animarDerIzq(this.itemPreguntaSecreta.nativeElement, 500);
-    this.animarDerIzq(this.itemRespuestaSecreta.nativeElement, 600);
-    this.animarDerIzq(this.itemEducacion.nativeElement, 800);
-    this.animarDerIzq(this.itemFechaNacimiento.nativeElement, 900);
-    this.animarDerIzq(this.itemPassword.nativeElement, 900);
+    this.animarDerIzq(this.itemEducacion.nativeElement, 400);
+    this.animarDerIzq(this.itemFechaNacimiento.nativeElement, 500);
   }
 
   limpiarAnimandoRotacion() {
@@ -114,7 +107,7 @@ export class MisdatosPage implements AfterViewInit {
       .addElement(this.page.nativeElement)
       .iterations(1)
       .duration(1000)
-      .fromTo('transform', 'rotateY(0deg)', 'rotateY(-180deg)')
+      .fromTo('transform', 'rotateY(deg)', 'rotateY(-180)')
       .duration(1000)
       .fromTo('transform', 'rotateY(-180deg)', 'rotateY(0deg)')
       .play();
@@ -128,7 +121,11 @@ export class MisdatosPage implements AfterViewInit {
   }
 
   mostrarDatosPersona() {
-    this.mostrarMensajeAlerta('Funcion aun no implementada');
+    // Si el usuario no ingresa la cuenta, se mostrará un error
+    if (this.usuario.cuenta.trim() === '') {
+      this.mostrarMensajeAlerta('La cuenta es un campo obligatorio.');
+      return;
+    }
 
     // Si el usuario no ingresa al menos el nombre o el apellido, se mostrará un error
     this.usuario.nombre = this.usuario.nombre.trim();
@@ -137,11 +134,24 @@ export class MisdatosPage implements AfterViewInit {
       this.mostrarMensajeAlerta('Debe ingresar al menos un nombre o un apellido.');
       return;
     }
+
+    // Mostrar un mensaje emergente con los datos de la persona
+    let mensaje = `
+      <small>
+        <b>Cuenta:     </b> ${this.usuario.cuenta} <br>
+        <b>Usuario:    </b> ${this.usuario.correo} <br>
+        <b>Nombre:     </b> ${this.asignado(this.usuario.nombre)} <br>
+        <b>Apellido:   </b> ${this.asignado(this.usuario.apellido)} <br>
+        <b>Educación:  </b> ${this.asignado(this.usuario.nivelEducacional.getEducacion())} <br>
+        <b>Nacimiento: </b> ${this.usuario.getFechaNacimiento()}
+      </small>
+    `;
+    this.mostrarMensajeAlerta(mensaje);
   }
 
   async mostrarMensajeAlerta(mensaje: string) {
     const alert = await this.alertController.create({
-      header: 'Lo sentimos',
+      header: 'Datos personales',
       message: mensaje,
       buttons: ['OK']
     });
@@ -149,7 +159,14 @@ export class MisdatosPage implements AfterViewInit {
   }
 
   navegar(pagina: string) {
-    this.usuario.navegarEnviandousuario(this.router, pagina);
+    console.log(`Navegando a: ${pagina}`);
+    this.router.navigate([pagina]);
+  }
+
+
+
+  actualizarUsuario() {
+    this.usuario.actualizarUsuario();
   }
 
 }
