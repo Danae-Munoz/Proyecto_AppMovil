@@ -25,7 +25,6 @@ export class MisdatosPage implements AfterViewInit {
   @ViewChild('itemPassword', { read: ElementRef }) itemPassword!: ElementRef;
   
   public listaNivelesEducacionales = NivelEducacional.getNivelesEducacionales();
-  
   public usuario: Usuario;
 
   constructor(
@@ -41,6 +40,11 @@ export class MisdatosPage implements AfterViewInit {
   ngAfterViewInit() {
     this.animarTituloIzqDer();
     this.animarVueltaDePagina();
+  }
+
+  public actualizarNivelEducacional(event: any) {
+    this.usuario.nivelEducacional 
+      = NivelEducacional.buscarNivelEducacional(event.detail.value)!;
   }
 
   limpiarPagina() {
@@ -128,7 +132,11 @@ export class MisdatosPage implements AfterViewInit {
   }
 
   mostrarDatosPersona() {
-    this.mostrarMensajeAlerta('Funcion aun no implementada');
+    // Si el usuario no ingresa la cuenta, se mostrará un error
+    if (this.usuario.cuenta.trim() === '') {
+      this.mostrarMensajeAlerta('La cuenta es un campo obligatorio.');
+      return;
+    }
 
     // Si el usuario no ingresa al menos el nombre o el apellido, se mostrará un error
     this.usuario.nombre = this.usuario.nombre.trim();
@@ -137,6 +145,19 @@ export class MisdatosPage implements AfterViewInit {
       this.mostrarMensajeAlerta('Debe ingresar al menos un nombre o un apellido.');
       return;
     }
+
+    // Mostrar un mensaje emergente con los datos de la persona
+    let mensaje = `
+      <small>
+        <b>Cuenta:     </b> ${this.usuario.cuenta} <br>
+        <b>Usuario:    </b> ${this.usuario.correo} <br>
+        <b>Nombre:     </b> ${this.asignado(this.usuario.nombre)} <br>
+        <b>Apellido:   </b> ${this.asignado(this.usuario.apellido)} <br>
+        <b>Educación:  </b> ${this.asignado(this.usuario.nivelEducacional.getEducacion())} <br>
+        <b>Nacimiento: </b> ${this.usuario.getFechaNacimiento()}
+      </small>
+    `;
+    this.mostrarMensajeAlerta(mensaje);
   }
 
   async mostrarMensajeAlerta(mensaje: string) {
@@ -150,6 +171,10 @@ export class MisdatosPage implements AfterViewInit {
 
   navegar(pagina: string) {
     this.usuario.navegarEnviandoUsuario(this.router, pagina);
+  }
+
+  actualizarUsuario() {
+    this.usuario.actualizarUsuario();
   }
 
 }

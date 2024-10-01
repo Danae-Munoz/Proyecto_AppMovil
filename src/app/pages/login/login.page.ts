@@ -10,18 +10,13 @@ import { ToastController } from '@ionic/angular';
 })
 export class LoginPage implements OnInit {
 
-  public usuario: Usuario = new Usuario(); 
+  isAlertOpen: boolean = false; 
+  alertButtons: any[] = []; 
 
-  constructor(
-    private router: Router, 
-    private activatedRoute: ActivatedRoute,
-    private toastController: ToastController)
-  {
-    this.usuario = new Usuario();
-    this.usuario.cuenta = 'atorres';
-    this.usuario.password = '1234';
-    this.usuario.recibirUsuario(this.activatedRoute, this.router);
-  }
+
+  public usuario: Usuario = new Usuario(); // Inicializa un usuario
+
+  constructor(private router: Router, private toastController: ToastController) {}
 
   ngOnInit(): void {}
 
@@ -29,42 +24,48 @@ export class LoginPage implements OnInit {
     this.router.navigate(['correo']);
   }
 
-  ingresar() {
-    const error = this.usuario.validarUsuario();
-    if(error) {
-      this.mostrarMensajeEmergente(error);
+  login(): void {
+    if (!this.validarUsuario(this.usuario)) {
       return;
-    } 
-    this.mostrarMensajeEmergente('¡Bienvenido(a) al Sistema de Asistencia DUOC!');
-    this.usuario.asistencia = this.usuario.asistenciaVacia();
-    this.usuario.navegarEnviandoUsuario(this.router, '/inicio');
-  }
-   
-  validarUsuario(usuario: Usuario): boolean {  
-  const usuarioModelo = new Usuario(); // Asegúrate de instanciar correctamente el modelo  
-  const usu = usuarioModelo.buscarUsuarioValido(usuario.cuenta, usuario.password);  
+    }
 
-  if (usu) {  
+    this.mostrarMensaje('¡Bienvenido!');
+
+    const navigationExtras: NavigationExtras = {
+      state: {
+        usuario: this.usuario
+      }
+    };
+    this.router.navigate(['principal'], navigationExtras);
+  }
+
+  recuperar(): void {
+    this.router.navigate(['/correo']);
+  }
+
+  validarUsuario(usuario: Usuario): boolean {  
+    const usu = Usuario.buscarUsuarioValido(  
+      usuario.correo, // Cambia esto a usuario.cuenta si es necesario  
+      usuario.password  
+    );  
+
+    if (usu) {  
       this.usuario = usu; // Actualiza la instancia de usuario  
       return true;  
-  } else {  
-      this.mostrarMensajeEmergente('Las credenciales no son correctas!');  
+    } else {  
+      this.mostrarMensaje('Las credenciales no son correctas!');  
       return false;  
-  }  
+    }  
   }
 
-  creaTuCuenta() {
-    this.mostrarMensajeEmergente('Funcionalidad aún no implementada');
-  }
-
-
-
-  async mostrarMensajeEmergente(mensaje: string, duracion?: number) {
+  async mostrarMensaje(mensaje: string, duracion?: number) {
     const toast = await this.toastController.create({
         message: mensaje,
-        duration: duracion? duracion: 2000
+        duration: duracion ? duracion : 2000
       });
     toast.present();
   }
 }
 
+
+  
