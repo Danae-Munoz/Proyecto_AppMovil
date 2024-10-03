@@ -1,0 +1,48 @@
+<ion-header [translucent]="true">  
+  <ion-toolbar>  
+    <ion-col size-md="3">  
+      <ion-img src="../../../assets/img/Logo_DuocUC.svg.png" class="logo ion-margin-left"></ion-img>  
+    </ion-col>  
+    <ion-col size-md="3">  
+      <div class="ion-text title">Sistema de Asistencia Duoc UC </div>  
+    </ion-col>  
+    <ion-col size-md="3"></ion-col>  
+  </ion-toolbar>  
+</ion-header>  
+<ion-content [fullscreen]="true">
+  <img src="../../../assets/img/IMG_20240405_141450.jpg" class="img-fluid">  
+  <div class="centrado">  
+    <div class="enmarcar-ingreso ">
+      <ion-card class="ion-text-center carta">
+        <ion-card-content>
+          <ion-card-header>
+            <ion-toolbar>
+              <h1 style="color: orange">Inicio de sesión</h1>
+            </ion-toolbar>
+          </ion-card-header>
+
+          <ion-item>
+            <ion-input [(ngModel)]="usuario.cuenta" 
+                label="Cuenta" labelPlacement="floating"
+                placeholder="Ej: atorres"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-input [(ngModel)]="usuario.password" 
+                label="Contraseña" labelPlacement="floating" type="password"
+                placeholder="Ej: 1234"></ion-input>
+          </ion-item>
+
+          <ion-col size="12">  
+            <br>  
+            <ion-button expand="block" (click)="ingresar()">Iniciar Sesión</ion-button>  
+            <ion-button expand="block" class="ion-margin-top" (click)="contrasena()">He olvidado mi contraseña</ion-button>  
+          </ion-col> 
+            
+        </ion-card-content>
+
+      </ion-card>
+
+    </div>
+  </div>
+</ion-content>

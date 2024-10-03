@@ -1,0 +1,53 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-row class="background-transparent">
+      <ion-col size="3">
+        <ion-img src="/assets/img/Logo_DuocUC.svg.png"></ion-img>
+      </ion-col>
+      <ion-col>
+        <ion-title #titulo class=" ion-text-left ion-text font-size-18 animate-text">
+          <div>
+            <br><br>
+            Sistema de Asistencia DUOC
+          </div>
+        </ion-title>
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-header>
+
+<!-- Asegúrate de aplicar la clase 'fondo-pagina' a ion-content -->
+<ion-content [fullscreen]="true" class="ion-padding-horizontal ion-text-center fondo-pagina">
+  <ul class="breadcrumb">
+    <li><a (click)="navegar('/inicio')">Inicio</a></li>
+    <li><a (click)="navegar('/misdatos')">Mis Datos</a></li>
+    <li><a (click)="navegar('/miclase')">Mi Clase</a></li>
+    <li><a (click)="navegar('/ingreso')">Salir</a></li>
+  </ul>
+  <div class="enmarcar">
+    <h1> Bienvenido(a) {{ usuario.nombre }} {{ usuario.apellido }} </h1>
+    <h2 *ngIf="!datosQR"> Escanea el código QR para registrar tu asistencia a clases </h2>
+    <video #video [hidden]="!escaneando" style="width: 100%"></video>
+    <canvas #canvas hidden></canvas>
+    <div class="margin-top">
+      <ion-button *ngIf="!escaneando" (click)="comenzarEscaneoQR()" shape="round">
+        <ion-icon slot="start" name="videocam-outline"></ion-icon>
+        Comenzar escaneo de QR
+      </ion-button>
+      <ion-button *ngIf="escaneando" (click)="detenerEscaneoQR()" shape="round">
+        <ion-icon slot="start" name="stop-circle-outline"></ion-icon>
+        Detener escaneo de QR
+      </ion-button>
+      <ion-button (click)="simularCapturaQR()" shape="round">
+        <ion-icon slot="start" name="videocam-outline"></ion-icon>
+        Simular escaneo
+      </ion-button>
+    </div>
+  </div>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar color="primary" class="ion-text-center">
+   
+  </ion-toolbar>
+</ion-footer>

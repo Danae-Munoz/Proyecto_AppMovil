@@ -1,0 +1,88 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-row class="background-transparent">
+      <ion-col size="3">
+        <ion-img src="/assets/img/Logo_DuocUC.svg.png"></ion-img>
+      </ion-col>
+      <ion-col>
+        <ion-title #titulo class=" ion-text-left ion-text font-size-18 animate-text">
+          <div>
+            <br><br>
+            Sistema de Asistencia DUOC
+          </div>
+        </ion-title>
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding-horizontal ion-text-center">
+  <ul class="breadcrumb">
+    <li><a (click)="navegar('/inicio')">Inicio</a></li>
+    <li><a (click)="navegar('/misdatos')">Mis Datos</a></li>
+    <li><a (click)="navegar('/miclase')">Mi Clase</a></li>
+    <li><a (click)="navegar('/ingreso')">Salir</a></li>
+  </ul>
+    <div class="enmarcar">
+      <h1> Bienvenido(a) {{ usuario.nombre }} {{ usuario.apellido }} </h1>
+
+      <h1 *ngIf="!usuario.asistencia.idAsignatura">
+        Asistencia sin información
+      </h1>
+
+      <div *ngIf="usuario.asistencia.idAsignatura">
+        <h1> Has quedado presente en tu clase </h1>
+        <table>
+          <tbody>
+            <tr>
+              <td>Bloque Inicio</td>
+              <td>{{ usuario.asistencia!.bloqueInicio }}</td>
+            </tr>
+            <tr>
+              <td>Bloque Término</td>
+              <td>{{ usuario.asistencia!.bloqueTermino }}</td>
+            </tr>
+            <tr>
+              <td>Día</td>
+              <td>{{ usuario.asistencia!.dia }}</td>
+            </tr>
+            <tr>
+              <td>Hora Inicio</td>
+              <td>{{ usuario.asistencia!.horaInicio }}</td>
+            </tr>
+            <tr>
+              <td>Hora Fin</td>
+              <td>{{ usuario.asistencia!.horaFin }}</td>
+            </tr>
+            <tr>
+              <td>ID Asignatura</td>
+              <td>{{ usuario.asistencia!.idAsignatura }}</td>
+            </tr>
+            <tr>
+              <td>Nombre Asignatura</td>
+              <td>{{ usuario.asistencia!.nombreAsignatura }}</td>
+            </tr>
+            <tr>
+              <td>Nombre Profesor</td>
+              <td>{{ usuario.asistencia!.nombreProfesor }}</td>
+            </tr>
+            <tr>
+              <td>Sección</td>
+              <td>{{ usuario.asistencia!.seccion }}</td>
+            </tr>
+            <tr>
+              <td>Sede</td>
+              <td>{{ usuario.asistencia!.sede }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar color="primary" class="ion-text-center">
+    
+
+  </ion-toolbar>
+</ion-footer>

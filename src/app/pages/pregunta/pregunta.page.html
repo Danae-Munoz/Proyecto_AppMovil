@@ -1,0 +1,39 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-col size-md="6"><ion-img src="/assets/img/Logo_DuocUC.svg.png" class="logo ion-margin-left"> </ion-img></ion-col>
+    <ion-col size-md="12"><div class="ion-text-center title">Sistema de Asistencia DUOCUC</div></ion-col>
+    <ion-col size-md="6"></ion-col>
+  </ion-toolbar>
+<br>
+</ion-header>
+  <ion-content [fullscreen]="true">
+  <img src="/assets/icon/c-28b93bf742.webp" class="img-fluid" style="position: absolute; right: 0; top: 0; z-index: -100; WIDTH:100%; height: 100%;">
+  <img src="../../../assets/img/IMG_20240405_141450.jpg" class="img-fluid"> 
+  <div class="centrado">
+    <ion-card-content class="login ion-fade-in-up ion-animatable">
+      <ion-title>
+        <h2>Paso 2:</h2>
+        <h2>Responde la siguiente pregunta:</h2>
+        <ion-text class="ion-text-center"><h2 style="color: white;">Usuario: {{ usuario?.nombre }}</h2></ion-text>
+        <ion-text class="ion-text-center"><h2 style="color: white;">{{usuario?.preguntaSecreta }}</h2></ion-text>
+      </ion-title>
+      <ion-item class="ion-margin-top">  
+        <ion-label position="floating">Ingrese Respuesta</ion-label>  
+        <ion-input labelplacement="floating" placeholder="" [(ngModel)]="this.respuesta"></ion-input>  
+      </ion-item>
+
+      <ion-row>
+        <ion-col size="12">
+          <br>
+          <ion-button class="orange-button" shape="block" (click)="validarRespuestaSecreta()">Recuperar Contraseña</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-card-content> 
+  </div>
+  <ion-alert
+    header="Aviso"
+    message="Campo obligatorio"
+    >
+  </ion-alert>
+</ion-content>
+

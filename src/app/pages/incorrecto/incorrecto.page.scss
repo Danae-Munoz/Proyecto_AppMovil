@@ -1,0 +1,67 @@
+.full-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  position: relative; /* Agrega posición relativa para que los elementos secundarios se posicionen correctamente */
+}
+
+ion-card{
+  margin-top: 100px;
+  background-color: #ff8c00df;
+}
+.img-container {
+  display: flex;
+  justify-content: center; /* Centra horizontalmente */
+  
+}
+.orange-button {
+  --background: #FFA500; /* Color de fondo naranja */
+  --color: #ffffff; /* Color del texto blanco */
+  --border-radius: 25px; /* Redondeo de los bordes */
+  border: none; /* Eliminar el borde por defecto */
+  padding: 10px 20px; /* Ajustar el tamaño del botón */
+  text-align: center; /* Centrar el texto */
+  display: inline-block; /* Asegurar que el botón se comporte correctamente */
+}
+
+.orange-button:hover {
+  --background: #FF8C00; /* Color de fondo naranja más oscuro al pasar el ratón */
+}
+ion-card-content.login {
+  --background: transparent; /* Naranja con 50% de transparencia */
+  padding: 20px;
+  border-radius: 15px; 
+} 
+
+ion-header ion-img {
+  width: 100px; /* Ajustamos el tamaño del logo */
+  height: auto;
+  margin: 10px; /* Añadimos un pequeño margen */
+}
+
+.title{
+  font-weight: bold; /* Para poner el texto en negritas */  
+  color: orange; /* Ajusta el color a naranja */  
+  font-size: 2rem;
+} 
+
+/* Para asegurar que la imagen de fondo del ion-content cubra toda la página */ 
+img.img-fluid {  
+  position: absolute;  
+  right: 0;  
+  top: 0;  
+  z-index: -100; /* Asegúrate de que el z-index esté lo suficientemente bajo */  
+  width: 100%;  
+  height: 100%;  
+}
+
+ion-toolbar {  
+  --background: transparent; /* Hace el fondo de la barra de herramientas transparente */  
+} 
+
+ion-content {  
+  --background: transparent; /* Asegúrate de que el contenido también sea transparente si es necesario */  
+
+}  
