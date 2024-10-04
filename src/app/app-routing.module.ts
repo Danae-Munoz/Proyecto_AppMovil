@@ -1,55 +1,50 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { CorreoPage } from './pages/correo/correo.page';
+import { CorreoPageModule } from './pages/correo/correo.module';
+import { CorrectoPageModule } from './pages/correcto/correcto.module';
+import { PreguntaPageModule } from './pages/pregunta/pregunta.module';
+import { IncorrectoPageModule } from './pages/incorrecto/incorrecto.module';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'login',
+    redirectTo: 'ingreso',
     pathMatch: 'full'
   },
   {
-    path: 'login',
-    loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
+    path: 'ingreso',
+    loadChildren: () => import('./pages/ingreso/ingreso.module').then( m => m.IngresoPageModule)
   },
   {
     path: 'inicio',
     loadChildren: () => import('./pages/inicio/inicio.module').then( m => m.InicioPageModule)
   },
   {
-    path: 'leerqr',
-    loadChildren: () => import('./pages/leerqr/leerqr.module').then( m => m.LeerqrPageModule)
+    path: 'miclase',
+    loadChildren: () => import('./pages/miclase/miclase.module').then( m => m.MiclasePageModule)
   },
   {
     path: 'misdatos',
     loadChildren: () => import('./pages/misdatos/misdatos.module').then( m => m.MisdatosPageModule)
   },
   {
-    path: 'miclase',
-    loadChildren: () => import('./pages/miclase/miclase.module').then( m => m.MiclasePageModule)
+    path: 'correo',
+    loadChildren: () => import('./pages/correo/correo.module').then( m => CorreoPageModule)
   },
   {
     path: 'correcto',
-    loadChildren: () => import('./pages/correcto/correcto.module').then( m => m.CorrectoPageModule)
-  },
-  {
-    path: 'correo',
-    loadChildren: () => import('./pages/correo/correo.module').then( m => m.CorreoPageModule)
+    loadChildren: () => import('./pages/correcto/correcto.module').then( m => CorrectoPageModule)
   },
   {
     path: 'incorrecto',
-    loadChildren: () => import('./pages/incorrecto/incorrecto.module').then( m => m.IncorrectoPageModule)
+    loadChildren: () => import('./pages/incorrecto/incorrecto.module').then( m => IncorrectoPageModule)
   },
   {
     path: 'pregunta',
-    loadChildren: () => import('./pages/pregunta/pregunta.module').then( m => m.PreguntaPageModule)
+    loadChildren: () => import('./pages/pregunta/pregunta.module').then( m => PreguntaPageModule)
   },
-  {
-    path: 'miclase/:bloqueInicio/:bloqueTermino/:dia/:horaFin/:horaInicio/:idAsignatura/:nombreAsignatura/:nombreProfesor/:seccion/:sede',
-    loadChildren: () => import('./pages/miclase/miclase.module').then(m => m.MiclasePageModule)
-  }
-
-
-
+  
 ];
 
 @NgModule({

@@ -50,7 +50,7 @@ export class CorreoPage implements OnInit {
     
   
   volverAlInicio() {
-    this.router.navigate(['/login']);
+    this.router.navigate(['/ingreso']);
   }
 
 }

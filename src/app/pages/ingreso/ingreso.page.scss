@@ -1,0 +1,108 @@
+.enmarcar-ingreso {
+  max-width: 400px;
+  width: 100%;
+  margin: auto;
+}
+
+.ancho-boton {
+  width: 140px;
+}
+ion-content{
+  --padding-top: 20px;
+  --padding-bottom: 20px;
+  --padding-end: 20px;
+  --padding-start: 20px;
+}
+
+.center-container {
+  display: flex;
+  justify-content: center; /* Centra horizontalmente */
+  align-items: center;     /* Centra verticalmente */
+  height: 100%;           /* Ocupa toda la altura de la pantalla */
+}
+
+.foto-portada {
+  width: 100%;
+}
+body{
+  background-image: url("../../../assets/img/IMG_20240405_141450.jpg") !important;
+}
+
+@media screen and (orientation: landscape) {
+  .center-container {
+    width: 40%;
+    margin: auto;
+  }
+}
+
+ion-header ion-img {
+  width: 100px; /* Ajustamos el tamaño del logo */
+  height: auto;
+  margin: 10px; /* Añadimos un pequeño margen */
+}
+
+ion-button {
+  --background: #FFA500; /* Color naranjo */
+  --background-hover: #F57C00; /* Color más oscuro cuando pasas el mouse */
+  --border-radius: 20px; /* Para que los botones tengan bordes redondeados */
+}
+
+ion-card-content.login {
+  --background: transparent;; /* Naranja con 50% de transparencia */
+  padding: 20px;
+  border-radius: 15px; 
+  
+}
+
+.title {  
+  font-weight: bold; /* Para poner el texto en negritas */  
+  color: orange; /* Ajusta el color a naranja */  
+  font-size: 1.5rem;
+  animation: moverTittle 5s ease-in-out infinite; /* Usar la animación definida */
+}
+.carta{
+  background-color: rgba(237, 219, 196, 0.773);
+}
+
+ion-header {  
+  --background: transparent; /* Hace el fondo del encabezado transparente */  
+  --ion-background-color: transparent; /* Asegúrate de que el color de fondo sea transparente */  
+  backdrop-filter: blur(10px); /* (Opcional) Agrega un efecto de desenfoque detrás del encabezado */  
+  border-bottom: 2px solid black;
+}  
+
+ion-toolbar {  
+  --background: transparent; /* Hace el fondo de la barra de herramientas transparente */  
+}  
+
+ion-content {  
+  --background: transparent; /* Asegúrate de que el contenido también sea transparente si es necesario */  
+}  
+
+/* Para asegurar que la imagen de fondo del ion-content cubra toda la página */  
+img.img-fluid {  
+  position: absolute;  
+  right: 0;  
+  top: 0;  
+  z-index: -100; /* Asegúrate de que el z-index esté lo suficientemente bajo */  
+  width: 100%;  
+  height: 100%;  
+}
+
+@keyframes moverTittle {  
+  0% {  
+    transform: translateX(0); /* Empieza en la posición original */  
+  }  
+  50% {  
+    transform: translateX(50%); /* Mueve 50% hacia la derecha */  
+  }  
+  100% {  
+    transform: translateX(0); /* Regresa a la posición original */  
+  }  
+}  
+
+ion-item {  
+  --background: transparent; /* Asegúrate de que el fondo sea transparente */  
+  
+  
+}

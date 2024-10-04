@@ -4,11 +4,10 @@
       <ion-col size="3">
         <ion-img src="/assets/img/Logo_DuocUC.svg.png"></ion-img>
       </ion-col>
-
       <ion-col>
-        <ion-title #titulo class="ion-text-left ion-text font-size-18 animate-text">
+        <ion-title #titulo class=" ion-text-left ion-text font-size-18 animate-text">
           <div>
-          <br>
+            <br><br>
             Sistema de Asistencia DUOC
           </div>
         </ion-title>
@@ -17,104 +16,41 @@
   </ion-toolbar>
 </ion-header>
 
-<div style="width: 100%; height: 100%; background-image: url('../../../assets/img/IMG_20230406_080720.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat; background-attachment: fixed;" >
-  <div class="book" >
-    <ul class="breadcrumb">
-    <li><a href="/inicio">Inicio</a></li>
+<!-- Asegúrate de aplicar la clase 'fondo-pagina' a ion-content -->
+<ion-content [fullscreen]="true" class="ion-padding-horizontal ion-text-center fondo-pagina">
+  
+  <ul class="breadcrumb">
+    <li><a (click)="navegar('/inicio')">Inicio</a></li>
     <li><a (click)="navegar('/misdatos')">Mis Datos</a></li>
     <li><a (click)="navegar('/miclase')">Mi Clase</a></li>
-    <!--<li><ion-img class="logo-img" src="/assets/img/Logo_DuocUC.svg.png"></ion-img></li>-->
-    </ul>
-    <ion-content [fullscreen]="true" #page class=" page">
+    <li><a (click)="navegar('/ingreso')">Salir</a></li>
+  </ul>
+  
+  <div class="enmarcar">
     
-      <ion-toolbar class="ion-padding-top">
-      <h1 class="ion-text-center">
-        ¡Bienvenido(a) {{ usuario.nombre }} {{ usuario.apellido }}!
-      </h1>
-      </ion-toolbar>
-      <ion-toolbar>
-      <h4 class="ion-text-center">
-        Información Adicional
-      </h4>
-      </ion-toolbar>
-    
-      <ion-item #itemCuenta >
-      <ion-input  [(ngModel)]="usuario.cuenta"
-          label="Cuenta" labelPlacement="floating"
-          placeholder="Ej: atorres"></ion-input>
-      </ion-item>
-
-      <ion-item #itemNombre>
-      <ion-input [(ngModel)]="usuario.nombre" 
-          label="Nombre" labelPlacement="floating"
-          placeholder="Ej: Ana"></ion-input>
-      </ion-item>
-
-      <ion-item #itemApellido>
-      <ion-input [(ngModel)]="usuario.apellido"
-          label="Apellido" labelPlacement="floating"
-          placeholder="Ej: Torres"></ion-input>
-      </ion-item>
-
-      <ion-item #itemEducacion>
-      <ion-label position="floating" class="font-size-16">Educación</ion-label>
-      <ion-select placeholder="Seleccione nivel" 
-          [(ngModel)]="usuario.nivelEducacional!.id">
-        <ion-select-option *ngFor="let nivelEducacional of listaNivelesEducacionales" 
-          [value]="nivelEducacional.id">
-            {{nivelEducacional.nombre}}
-        </ion-select-option>
-      </ion-select>
-      </ion-item>
-
-      <ion-item #itemFechaNacimiento>
-      <table>
-        <tr>
-          <td class="font-size-12">
-            Nacimiento
-          </td>
-          <td class="cell-align-right">
-            <input 
-              matInput 
-              [matDatepicker]="fechaNacimiento" 
-              [(ngModel)]="usuario.fechaNacimiento"
-              placeholder="dd/mm/yyyy"
-              class="date-width">
-          </td>
-          <td class="cell-width-0">
-            <mat-datepicker-toggle matSuffix [for]="fechaNacimiento"></mat-datepicker-toggle>
-            <mat-datepicker #fechaNacimiento></mat-datepicker>
-          </td>
-        </tr>
-      </table>
-      </ion-item>
-
-      <ion-grid class="ion-margin-top">
-        <ion-row class="ion-text-center">
-        <ion-col col-6 >
-          <ion-button shape="round" size="small" class="btn-orange" (click)="limpiarAnimandoDerIzq()">
-            Limpiar
-          </ion-button>          
-        </ion-col>
-        <ion-col col-6 >
-          <ion-button shape="round" size="small" class="btn-orange" (click)="mostrarDatosPersona()">
-            Mis Datos
-          </ion-button>          
-        </ion-col>
-        </ion-row>
-      </ion-grid>
-    </ion-content>
+    <h1> Bienvenido(a) {{ usuario.nombre }} {{ usuario.apellido }} </h1>
+    <h2 *ngIf="!datosQR"> Escanea el código QR para registrar tu asistencia a clases </h2>
+    <video #video [hidden]="!escaneando" style="width: 100%"></video>
+    <canvas #canvas hidden></canvas>
+    <div class="margin-top">
+      <ion-button *ngIf="!escaneando" (click)="comenzarEscaneoQR()" shape="round">
+        <ion-icon slot="start" name="videocam-outline"></ion-icon>
+        Comenzar escaneo de QR
+      </ion-button>
+      <ion-button *ngIf="escaneando" (click)="detenerEscaneoQR()" shape="round">
+        <ion-icon slot="start" name="stop-circle-outline"></ion-icon>
+        Detener escaneo de QR
+      </ion-button>
+      <ion-button (click)="simularCapturaQR()" shape="round">
+        <ion-icon slot="start" name="videocam-outline"></ion-icon>
+        Simular escaneo
+      </ion-button>
+    </div>
   </div>
-</div>
-<div class="background-footer">
-  <ion-button shape="round" (click)="navegar('/leerqr')" class="orange-button">
-    <ion-icon slot="start" name="qr-code"></ion-icon>
-    Asistencia
-  </ion-button>
-  &nbsp;&nbsp;&nbsp;
-  <ion-button shape="round" (click)="navegar('/login')" class="orange-button">
-    <ion-icon slot="start" name="log-out"></ion-icon>
-    Salir
-  </ion-button>
-</div>
+</ion-content>
 
+<ion-footer>
+  <ion-toolbar color="primary" class="ion-text-center">
+   
+  </ion-toolbar>
+</ion-footer>

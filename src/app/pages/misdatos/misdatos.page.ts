@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
+import { AfterViewInit, ApplicationRef, Component, ElementRef, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { NivelEducacional } from 'src/app/model/nivel-educacional';
@@ -7,22 +7,19 @@ import { AnimationController} from '@ionic/angular';
 
 @Component({
   selector: 'app-misdatos',
-  templateUrl: './misdatos.page.html',
-  styleUrls: ['./misdatos.page.scss'],
+  templateUrl: 'misdatos.page.html',
+  styleUrls: ['misdatos.page.scss'],
 })
+
 export class MisdatosPage implements AfterViewInit {
 
   @ViewChild('titulo', { read: ElementRef }) itemTitulo!: ElementRef;
   @ViewChild('page', { read: ElementRef }) page!: ElementRef;
   @ViewChild('itemCuenta', { read: ElementRef }) itemCuenta!: ElementRef;
   @ViewChild('itemNombre', { read: ElementRef }) itemNombre!: ElementRef;
-  @ViewChild('itemCorreo', { read: ElementRef }) itemCorreo!: ElementRef;
   @ViewChild('itemApellido', { read: ElementRef }) itemApellido!: ElementRef;
-  @ViewChild('itemPreguntaSecreta', { read: ElementRef }) itemPreguntaSecreta!: ElementRef;
-  @ViewChild('itemRespuestaSecreta', { read: ElementRef }) itemRespuestaSecreta!: ElementRef;
   @ViewChild('itemEducacion', { read: ElementRef }) itemEducacion!: ElementRef;
   @ViewChild('itemFechaNacimiento', { read: ElementRef }) itemFechaNacimiento!: ElementRef;
-  @ViewChild('itemPassword', { read: ElementRef }) itemPassword!: ElementRef;
   
   public listaNivelesEducacionales = NivelEducacional.getNivelesEducacionales();
   public usuario: Usuario;
@@ -51,12 +48,8 @@ export class MisdatosPage implements AfterViewInit {
     this.usuario.cuenta = '';
     this.usuario.nombre = '';
     this.usuario.apellido = '';
-    this.usuario.correo = '';
-    this.usuario.preguntaSecreta = '';
-    this.usuario.respuestaSecreta = '';
     this.usuario.nivelEducacional = NivelEducacional.buscarNivelEducacional(1)!;
     this.usuario.fechaNacimiento = undefined;
-    this.usuario.password = '';
   }
 
   limpiarAnimandoDerIzq() {
@@ -64,12 +57,8 @@ export class MisdatosPage implements AfterViewInit {
     this.animarDerIzq(this.itemCuenta.nativeElement, 100);
     this.animarDerIzq(this.itemNombre.nativeElement, 200);
     this.animarDerIzq(this.itemApellido.nativeElement, 300);
-    this.animarDerIzq(this.itemCorreo.nativeElement, 400);
-    this.animarDerIzq(this.itemPreguntaSecreta.nativeElement, 500);
-    this.animarDerIzq(this.itemRespuestaSecreta.nativeElement, 600);
-    this.animarDerIzq(this.itemEducacion.nativeElement, 800);
-    this.animarDerIzq(this.itemFechaNacimiento.nativeElement, 900);
-    this.animarDerIzq(this.itemPassword.nativeElement, 900);
+    this.animarDerIzq(this.itemEducacion.nativeElement, 400);
+    this.animarDerIzq(this.itemFechaNacimiento.nativeElement, 500);
   }
 
   limpiarAnimandoRotacion() {
@@ -118,7 +107,7 @@ export class MisdatosPage implements AfterViewInit {
       .addElement(this.page.nativeElement)
       .iterations(1)
       .duration(1000)
-      .fromTo('transform', 'rotateY(0deg)', 'rotateY(-180deg)')
+      .fromTo('transform', 'rotateY(deg)', 'rotateY(-180)')
       .duration(1000)
       .fromTo('transform', 'rotateY(-180deg)', 'rotateY(0deg)')
       .play();
@@ -162,7 +151,7 @@ export class MisdatosPage implements AfterViewInit {
 
   async mostrarMensajeAlerta(mensaje: string) {
     const alert = await this.alertController.create({
-      header: 'Lo sentimos',
+      header: 'Datos personales',
       message: mensaje,
       buttons: ['OK']
     });
@@ -178,4 +167,3 @@ export class MisdatosPage implements AfterViewInit {
   }
 
 }
-

@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 import { MisdatosPage } from './misdatos.page';
 
-describe('InicioPage', () => {
+describe('MisdatosPage', () => {
   let component: MisdatosPage;
   let fixture: ComponentFixture<MisdatosPage>;
 

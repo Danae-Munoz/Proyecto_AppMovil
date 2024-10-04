@@ -24,3 +24,20 @@
 @import "@ionic/angular/css/text-alignment.css";
 @import "@ionic/angular/css/text-transformation.css";
 @import "@ionic/angular/css/flex-utils.css";
+
+.centrar {
+  display: flex;
+  justify-content: center;  /* Centra horizontalmente */
+  align-items: center;      /* Centra verticalmente */
+  height: 100%;            /* Ocupa el 100% de la altura de la pantalla */
+}
+
+.enmarcar {
+  max-width: 600px;
+  width: 100%;
+  margin: auto;
+  border-radius: 10px;
+  padding: 20px;
+  border: 1px solid gray;
+}
+

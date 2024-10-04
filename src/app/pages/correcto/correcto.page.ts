@@ -34,8 +34,8 @@ export class CorrectoPage implements OnInit {
   ngOnInit() {
   }
 
-  login() {
-    this.router.navigate(['login']);
+  Ingreso() {
+    this.router.navigate(['ingreso']);
   }
 
 }
