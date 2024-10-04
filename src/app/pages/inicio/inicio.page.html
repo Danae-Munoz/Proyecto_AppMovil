@@ -18,16 +18,13 @@
 
 <!-- Asegúrate de aplicar la clase 'fondo-pagina' a ion-content -->
 <ion-content [fullscreen]="true" class="ion-padding-horizontal ion-text-center fondo-pagina">
-  
   <ul class="breadcrumb">
     <li><a (click)="navegar('/inicio')">Inicio</a></li>
     <li><a (click)="navegar('/misdatos')">Mis Datos</a></li>
     <li><a (click)="navegar('/miclase')">Mi Clase</a></li>
     <li><a (click)="navegar('/ingreso')">Salir</a></li>
   </ul>
-  
   <div class="enmarcar">
-    
     <h1> Bienvenido(a) {{ usuario.nombre }} {{ usuario.apellido }} </h1>
     <h2 *ngIf="!datosQR"> Escanea el código QR para registrar tu asistencia a clases </h2>
     <video #video [hidden]="!escaneando" style="width: 100%"></video>

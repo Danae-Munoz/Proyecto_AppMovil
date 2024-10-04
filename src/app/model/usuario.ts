@@ -10,9 +10,9 @@ export class Usuario extends Persona {
   public password: string;
   public preguntaSecreta: string;
   public respuestaSecreta: string;
-  public confirmPassword: string;
   public asistencia: Asistencia;
   public listaUsuarios: Usuario[];
+  static crearListausuariosValidos: any;
 
   constructor() {
     super();
@@ -21,7 +21,6 @@ export class Usuario extends Persona {
     this.password = '';
     this.preguntaSecreta = '';
     this.respuestaSecreta = '';
-    this.confirmPassword = '';
     this.nombre = '';
     this.apellido = '';
     this.nivelEducacional = NivelEducacional.buscarNivelEducacional(1)!;
@@ -45,7 +44,6 @@ export class Usuario extends Persona {
     };
   }
 
-
   public static getNewUsuario(
     cuenta: string,
     correo: string,
@@ -68,75 +66,6 @@ export class Usuario extends Persona {
     usuario.nivelEducacional = nivelEducacional;
     usuario.fechaNacimiento = fechaNacimiento;
     return usuario;
-  }
-
-  // Método corregido para buscar usuario por cuenta y contraseña
-  public buscarUsuarioValido(cuenta: string, password: string): Usuario | undefined {
-    return this.listaUsuarios.find(usu => usu.cuenta === cuenta && usu.password === password);
-  }
-
-  public validarCuenta(): string {
-    if (this.cuenta.trim() === '') {
-      return 'Para ingresar al sistema debe seleccionar una cuenta.';
-    }
-    return '';
-  }
-
-  public validarPassword(): string {
-    if (this.password.trim() === '') {
-      return 'Para ingresar al sistema debe escribir la contraseña.';
-    }
-    if (isNaN(+this.password)) {
-      return 'La contraseña debe ser numérica.';
-    }
-    if (this.password.length !== 4) {
-      return 'La contraseña debe ser numérica de 4 dígitos.';
-    }
-    return '';
-  }
-
-  public validarUsuario(): string {
-    let error = this.validarCuenta();
-    if (error) return error;
-    error = this.validarPassword();
-    if (error) return error;
-    const usu = this.buscarUsuarioValido(this.cuenta, this.password);
-    if (!usu) return 'Las credenciales del usuario son incorrectas.';
-    return '';
-  }
-
-  public actualizarDatos(
-    cuenta: string,
-    correo: string,
-    password: string,
-    preguntaSecreta: string,
-    respuestaSecreta: string,
-    nombre: string,
-    apellido: string,
-    nivelEducacional: NivelEducacional,
-    fechaNacimiento: Date | undefined
-  ): void {
-    this.cuenta = cuenta;
-    this.correo = correo;
-    this.password = password;
-    this.preguntaSecreta = preguntaSecreta;
-    this.respuestaSecreta = respuestaSecreta;
-    this.nombre = nombre;
-    this.apellido = apellido;
-    this.nivelEducacional = nivelEducacional;
-    this.fechaNacimiento = fechaNacimiento;
-  }
-
-  public override toString(): string {
-    return `      ${this.cuenta}
-      ${this.correo}
-      ${this.password}
-      ${this.preguntaSecreta}
-      ${this.respuestaSecreta}
-      ${this.nombre}
-      ${this.apellido}
-      ${this.nivelEducacional.getEducacion()}
-      ${this.getFechaNacimiento()}`;
   }
 
   crearListausuariosValidos() {
@@ -183,83 +112,123 @@ export class Usuario extends Persona {
     }
   }
 
-  recibirUsuario(activatedRoute: ActivatedRoute, router: Router) {
-    if(this.listaUsuarios.length === 0) this.crearListausuariosValidos();
-    activatedRoute.queryParams.subscribe(() =>{
-      const nav = router.getCurrentNavigation();
-      if (nav) {
-        if (nav.extras.state) {
-          this.listaUsuarios = nav.extras.state['listaUsuarios'];
-          const encontrado = this.buscarUsuarioPorCuenta(
-            nav.extras.state['cuenta']
-          );
-          this.cuenta = encontrado!.cuenta
-          this.password = encontrado!.password
-          this.preguntaSecreta = encontrado!.preguntaSecreta
-          this.respuestaSecreta = encontrado!.respuestaSecreta
-          this.nombre = encontrado!.nombre
-          this.apellido = encontrado!.apellido
-          this.nivelEducacional = encontrado!.nivelEducacional
-          this.fechaNacimiento = encontrado!.fechaNacimiento
-          
-          this.asistencia = encontrado!.asistencia = nav.extras.state['asistencia'];
-        }
-      }
-      router.navigate(['/login'])
-    });
-
+  public buscarUsuarioValido(cuenta: string, password: string): Usuario | undefined {
+    return this.listaUsuarios.find(usu => usu.cuenta === cuenta && usu.password === password);
   }
-
-  navegarEnviandousuario(router: Router, pagina: string) {
-    const navigationExtras: NavigationExtras = {
-      state: {
-        cuenta: this.cuenta, 
-        password: this.password,
-      }
-    }
-    router.navigate([pagina], navigationExtras);
-  }
-
 
   public buscarUsuarioPorCuenta(cuenta: string): Usuario | undefined {
     return this.listaUsuarios.find(usu => usu.cuenta === cuenta);
   }
 
+  public validarCuenta(): string {
+    if (this.cuenta.trim() === '') {
+      return 'Para ingresar al sistema debe seleccionar una cuenta.';
+    }
+    return '';
+  }
+
+  public validarPassword(): string {
+    if (this.password.trim() === '') {
+      return 'Para igresar al sistema debe escribir la contraseña.';
+    }
+    for (let i = 0; i < this.password.length; i++) {
+      if ('0123456789'.indexOf(this.password.charAt(i)) === -1) {
+        return 'La contraseña debe ser numérica.';
+      }
+    }
+    if (this.password.length !== 4) {
+      return 'La contraseña debe ser numérica de 4 dígitos.';
+    }
+    return '';
+  }
+
+  public validarUsuario(): string {
+    let error = this.validarCuenta();
+    if (error) return error;
+    error = this.validarPassword();
+    if (error) return error;
+    const usu = this.buscarUsuarioValido(this.cuenta, this.password);
+    if (!usu) return 'Las credenciales del usuario son incorrectas.';
+    return '';
+  }
+
+  public override toString(): string {
+    return `      ${this.cuenta}
+      ${this.correo}
+      ${this.password}
+      ${this.preguntaSecreta}
+      ${this.respuestaSecreta}
+      ${this.nombre}
+      ${this.apellido}
+      ${this.nivelEducacional.getEducacion()}
+      ${this.getFechaNacimiento()}`;
+  }
+
+  recibirUsuario(activatedRoute: ActivatedRoute, router: Router) {
+     if (this.listaUsuarios.length == 0) this.crearListausuariosValidos();
+     activatedRoute.queryParams.subscribe(()=> {
+        const nav = router.getCurrentNavigation();
+        if (nav) {
+          if (nav.extras.state){
+            this.listaUsuarios= nav.extras.state['listaUsuarios'];
+            const encontrado = this.buscarUsuarioPorCuenta(
+              nav.extras.state['cuenta']);
+              this.cuenta= encontrado!.cuenta
+              this.password= encontrado!.password
+              this.correo= encontrado!.correo
+              this.preguntaSecreta= encontrado!.preguntaSecreta
+              this.respuestaSecreta= encontrado!.respuestaSecreta
+              this.nombre= encontrado!.nombre
+              this.apellido= encontrado!.apellido
+              this.nivelEducacional= encontrado!.nivelEducacional
+              this.fechaNacimiento= encontrado!.fechaNacimiento
+
+              this.asistencia= encontrado!.asistencia= nav.extras.state['asistencia'];
+              return;
+          }
+
+        }
+        router.navigate(['/ingreso'])
+     });
+
+  }
+
   navegarEnviandoUsuario(router: Router, pagina: string) {
     if (this.cuenta.trim() !== '' && this.password.trim() !== ''){
-      const NavigationExtras: NavigationExtras = {
-        state: {
-        cuenta: this.cuenta,
-        listaUsuarios: this.listaUsuarios,
-        Asistencia: this.asistencia,
+      const navigationExtras: NavigationExtras={
+        state:{
+          cuenta: this.cuenta,
+          listaUsuarios: this.listaUsuarios,
+          asistencia: this.asistencia
         }
       }
-      router.navigate([pagina], NavigationExtras);
+      router.navigate([pagina], navigationExtras);
     }else{
       router.navigate(['/ingreso']);
+
     }
 
   }
 
   actualizarUsuario() {
     const usu = this.buscarUsuarioPorCuenta(this.cuenta);
-    if (usu) {
-      usu.correo = this.correo;
-      usu.password = this.password;
-      usu.preguntaSecreta = this.preguntaSecreta;
-      usu.respuestaSecreta = this.correo;
-      usu.nombre = this.nombre;
-      usu.apellido = this.apellido;
-      usu.nivelEducacional = this.nivelEducacional;
-      usu.fechaNacimiento = this.fechaNacimiento;
-      usu.asistencia = this.asistencia;
+    if (usu){
+      usu.correo =this.correo;
+      usu.password =this.password;
+      usu.preguntaSecreta =this.preguntaSecreta;
+      usu.respuestaSecreta =this.respuestaSecreta;
+      usu.nombre =this.nombre;
+      usu.apellido=this.apellido;
+      usu.nivelEducacional =this.nivelEducacional;
+      usu.fechaNacimiento =this.fechaNacimiento;
+      usu.asistencia =this.asistencia;
     }
 
-
   }
 
-  public buscarUsuarioPorCorreo(correo: string): Usuario | undefined {
-    return this.crearListausuariosValidos().find(usuario => usuario.correo === correo);
+  public static buscarUsuarioPorCorreo(correo: string): Usuario | undefined {
+    const usuario = new Usuario();  // Crear una nueva instancia de Usuario
+    usuario.crearListausuariosValidos();  // Asegurarte de que la lista de usuarios esté poblada
+    return usuario.listaUsuarios.find(usu => usu.correo === correo);  // Buscar en la lista de usuarios
   }
-  
 }
